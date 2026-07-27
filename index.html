@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Retro Armenia — Modern women's fashion inspired by timeless vintage silhouettes. Quiet luxury, editorial elegance.">
+  <meta property="og:title" content="Retro Armenia | Timeless Silhouettes">
+  <meta property="og:description" content="Contemporary elegance with vintage soul. Discover the new collection.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1612423284934-2850a4ea6e0f?q=80&w=1000&auto=format&fit=crop">
+  <meta property="og:type" content="website">
+  <title>Retro Armenia | Timeless Modern Fashion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+  <style>
+    /* ----- CSS VARIABLES & RESET ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-warm-ivory: #F9F6F0;
+      --color-clay-beige: #E8DFD4;
+      --color-soft-sand: #D6C9B9;
+      --color-muted-taupe: #B7A291;
+      --color-deep-cocoa: #4B3A32;
+      --color-charcoal: #2B2623;
+      --color-warm-white: #FDFAF5;
+      --color-accent-burnt-rose: #A65D4B;
+      --color-accent-dusty-olive: #6B6E58;
+      --color-antique-gold: #C4A87C;
+      --transition-smooth: 0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
+      --transition-slow: 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+      --transition-cinematic: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-editorial: 1s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-nav-line: 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+      --transition-reveal: 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+      --transition-quote-line: 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+      --transition-feature: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+      --font-display: 'Cormorant Garamond', serif;
+      --font-ui: 'Inter', sans-serif;
+      --spacing-xl: clamp(4rem, 10vw, 8rem);
+      --spacing-lg: clamp(2.5rem, 6vw, 5rem);
+      --spacing-md: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--color-warm-white);
+      cursor: default;
+    }
+
+    body {
+      font-family: var(--font-ui);
+      background-color: var(--color-warm-white);
+      color: var(--color-charcoal);
+      line-height: 1.5;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ----- REFINED CURSOR INTERACTIONS ----- */
+    /* Interactive elements get a slightly larger, softer cursor */
+    a,
+    button,
+    .product-card,
+    .editorial-image-wrapper,
+    .archival-intro,
+    .rediscovery-item,
+    .size-option,
+    .color-swatch,
+    .filter-bar span {
+      cursor: pointer;
+    }
+
+    /* Product images and editorial images feel more intentional */
+    .card-image img,
+    .editorial-image-wrapper .main-image,
+    .gallery-main img {
+      cursor: pointer;
+    }
+
+    /* Buttons get a subtle pointer enhancement */
+    .btn-primary,
+    .add-to-cart-btn {
+      cursor: pointer;
+    }
+
+    /* Text selection refinement for premium feel */
+    ::selection {
+      background: var(--color-clay-beige);
+      color: var(--color-charcoal);
+    }
+
+    ::-moz-selection {
+      background: var(--color-clay-beige);
+      color: var(--color-charcoal);
+    }
+
+    /* ----- TYPOGRAPHY ----- */
+    h1, h2, h3, .display-font {
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .section-label {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--color-muted-taupe);
+      margin-bottom: 1rem;
+      font-weight: 500;
+      display: block;
+    }
+
+    .accent-line {
+      width: 40px;
+      height: 1px;
+      background: var(--color-accent-burnt-rose);
+      margin: 1.5rem 0;
+    }
+
+    /* ----- SCROLL REVEAL BASE STATES ----- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity var(--transition-reveal), transform var(--transition-reveal);
+      will-change: opacity, transform;
+    }
+
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity var(--transition-reveal), transform var(--transition-reveal);
+      will-change: opacity, transform;
+    }
+
+    .reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0s; }
+    .reveal-stagger.revealed > *:nth-child(2) { transition-delay: 0.1s; }
+    .reveal-stagger.revealed > *:nth-child(3) { transition-delay: 0.2s; }
+    .reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.3s; }
+    .reveal-stagger.revealed > *:nth-child(5) { transition-delay: 0.4s; }
+
+    .reveal-stagger.revealed > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ----- LAYOUT & UTILITIES ----- */
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+
+    /* ----- HEADER / NAVIGATION ----- */
+    .main-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      mix-blend-mode: difference;
+      color: white;
+      transition: background 0.3s ease, color 0.3s ease;
+      pointer-events: none;
+    }
+    .main-header > * {
+      pointer-events: auto;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    .logo:hover {
+      opacity: 0.8;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.8rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-weight: 400;
+    }
+
+    .nav-links a {
+      color: inherit;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 6px;
+      transition: opacity var(--transition-nav-line), color var(--transition-nav-line);
+      opacity: 0.75;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width var(--transition-nav-line);
+      transform-origin: left center;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      opacity: 1;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: inherit;
+      font-size: 1.5rem;
+      opacity: 0.75;
+      transition: opacity 0.3s ease;
+    }
+    .menu-toggle:hover {
+      opacity: 1;
+    }
+
+    /* ----- HERO (HOME) ----- */
+    .hero {
+      height: 100vh;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 8%;
+      overflow: hidden;
+      background: #e9e3d9;
+    }
+    .hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.85) contrast(1.05);
+      transform: scale(1.02);
+      animation: slowReveal 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    }
+    @keyframes slowReveal {
+      0% { transform: scale(1.12); opacity: 0.6; }
+      100% { transform: scale(1.02); opacity: 1; }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .hero-content h1 {
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      line-height: 1;
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      max-width: 400px;
+      opacity: 0.9;
+    }
+
+    /* ----- REDESIGNED PRIMARY BUTTON ----- */
+    .btn-primary {
+      display: inline-block;
+      position: relative;
+      background: transparent;
+      border: 1px solid white;
+      color: white;
+      padding: 0.9rem 2.8rem;
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      text-decoration: none;
+      overflow: hidden;
+      isolation: isolate;
+      transition: color 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+      background-color: transparent;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: white;
+      z-index: -1;
+      transition: width 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+      transform-origin: left center;
+    }
+
+    .btn-primary:hover {
+      color: var(--color-charcoal);
+      border-color: white;
+    }
+
+    .btn-primary:hover::before {
+      width: 100%;
+    }
+
+    .btn-primary--dark {
+      border-color: var(--color-charcoal);
+      color: var(--color-charcoal);
+    }
+
+    .btn-primary--dark::before {
+      background: var(--color-charcoal);
+    }
+
+    .btn-primary--dark:hover {
+      color: white;
+      border-color: var(--color-charcoal);
+    }
+
+    /* ----- EDITORIAL CAMPAIGN REDESIGN ----- */
+    .editorial-campaign {
+      padding: var(--spacing-xl) 0;
+      background: var(--color-warm-white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .editorial-campaign .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ----- REFINED QUOTE SECTION WITH HOVER INTERACTION ----- */
+    .archival-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 5rem auto;
+      padding: 2rem 1rem;
+    }
+
+    .archival-intro .section-label {
+      text-align: center;
+      transition: color var(--transition-slow);
+    }
+
+    .archival-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-style: italic;
+      color: var(--color-deep-cocoa);
+      line-height: 1.3;
+      margin: 1rem 0;
+      font-weight: 400;
+      transition: color var(--transition-slow);
+    }
+
+    .archival-attribution {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-muted-taupe);
+      margin-top: 0.5rem;
+      opacity: 0.6;
+      transition: opacity var(--transition-slow), color var(--transition-slow);
+    }
+
+    .quote-line {
+      width: 40px;
+      height: 1px;
+      background: var(--color-accent-burnt-rose);
+      margin: 1.5rem auto;
+      transition: width var(--transition-quote-line);
+      transform-origin: center;
+    }
+
+    .archival-intro:hover .quote-line {
+      width: 80px;
+    }
+
+    .archival-intro:hover .archival-quote {
+      color: var(--color-charcoal);
+    }
+
+    .archival-intro:hover .archival-attribution {
+      opacity: 0.9;
+      color: var(--color-deep-cocoa);
+    }
+
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: center;
+      margin-bottom: 5rem;
+    }
+
+    .editorial-text {
+      position: relative;
+    }
+
+    .editorial-text .overline {
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--color-accent-burnt-rose);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .editorial-text h2 {
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      line-height: 1.05;
+    }
+
+    .editorial-text .body-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-deep-cocoa);
+      max-width: 420px;
+    }
+
+    /* ----- REFINED EDITORIAL IMAGE HOVER ----- */
+    .editorial-image-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .editorial-image-wrapper .main-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: sepia(0.15) contrast(0.95);
+      transition: transform var(--transition-editorial), filter var(--transition-editorial);
+      will-change: transform, filter;
+      transform: scale(1);
+    }
+
+    .editorial-image-wrapper:hover .main-image {
+      transform: scale(1.04);
+      filter: sepia(0.08) contrast(1.02);
+    }
+
+    .editorial-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem 2rem 1.8rem 2rem;
+      background: linear-gradient(to top, rgba(249, 246, 240, 0.92) 0%, rgba(249, 246, 240, 0) 100%);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity var(--transition-editorial), transform var(--transition-editorial);
+      pointer-events: none;
+    }
+
+    .editorial-image-wrapper:hover .editorial-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .editorial-caption .caption-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--color-charcoal);
+      margin-bottom: 0.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .editorial-caption .caption-subtitle {
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--color-muted-taupe);
+    }
+
+    .archival-detail-card {
+      display: none;
+    }
+
+    /* ----- REDISCOVERY STRIP WITH REFINED FEATURE BLOCK HOVER ----- */
+    .rediscovery-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-top: 6rem;
+      border-top: 1px solid var(--color-clay-beige);
+      padding-top: 4rem;
+    }
+
+    .rediscovery-item {
+      text-align: center;
+      padding: 1.5rem 0.5rem 1rem;
+      position: relative;
+    }
+
+    .rediscovery-item .icon-letter {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      color: var(--color-soft-sand);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+      transition: color var(--transition-feature);
+    }
+
+    .rediscovery-item h4 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--color-charcoal);
+      transition: transform var(--transition-feature);
+      transform: translateY(0);
+    }
+
+    .rediscovery-item p {
+      font-size: 0.9rem;
+      color: var(--color-muted-taupe);
+      max-width: 250px;
+      margin: 0 auto;
+      opacity: 0.65;
+      transition: opacity var(--transition-feature), color var(--transition-feature);
+    }
+
+    .rediscovery-item .feature-line {
+      width: 0;
+      height: 1px;
+      background: var(--color-antique-gold);
+      margin: 1rem auto 0;
+      transition: width var(--transition-feature);
+    }
+
+    .rediscovery-item:hover .icon-letter {
+      color: var(--color-antique-gold);
+    }
+
+    .rediscovery-item:hover h4 {
+      transform: translateY(-4px);
+    }
+
+    .rediscovery-item:hover p {
+      opacity: 1;
+      color: var(--color-deep-cocoa);
+    }
+
+    .rediscovery-item:hover .feature-line {
+      width: 30px;
+    }
+
+    /* ----- SECTIONS ----- */
+    .section {
+      padding: var(--spacing-xl) 0;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.2rem;
+      margin-top: 2.5rem;
+    }
+
+    /* ----- PRODUCT CARD (REFINED HOVER) ----- */
+    .product-card {
+      position: relative;
+      transition: transform var(--transition-cinematic), box-shadow var(--transition-cinematic);
+      will-change: transform, box-shadow;
+      background: transparent;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .card-image {
+      position: relative;
+      overflow: hidden;
+      background: #f2ede7;
+      aspect-ratio: 3/4;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-cinematic);
+      will-change: transform;
+      transform: scale(1);
+    }
+
+    .product-card:hover .card-image img {
+      transform: scale(1.04);
+    }
+
+    .card-details {
+      padding: 1.5rem 0.2rem 0;
+      position: relative;
+      transition: padding var(--transition-smooth);
+    }
+
+    .card-details h3 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+      transition: color var(--transition-smooth);
+      color: var(--color-deep-cocoa);
+    }
+
+    .product-card:hover .card-details h3 {
+      color: var(--color-charcoal);
+    }
+
+    .price-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      position: relative;
+      min-height: 2.2rem;
+    }
+
+    .card-details .price {
+      font-family: var(--font-ui);
+      font-weight: 400;
+      color: var(--color-muted-taupe);
+      transition: transform var(--transition-cinematic), color var(--transition-smooth);
+      transform: translateY(0);
+      display: inline-block;
+    }
+
+    .product-card:hover .card-details .price {
+      transform: translateY(-4px);
+      color: var(--color-deep-cocoa);
+    }
+
+    .view-piece-label {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-accent-burnt-rose);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--transition-cinematic), transform var(--transition-cinematic);
+      white-space: nowrap;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+    }
+
+    .product-card:hover .view-piece-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .quick-add {
+      display: none;
+    }
+
+    /* ----- PAGES (DYNAMIC VIEWS) ----- */
+    .page {
+      display: none;
+      padding-top: 100px;
+      min-height: 100vh;
+    }
+    .page.active {
+      display: block;
+    }
+    .collection-header, .about-header, .contact-header {
+      text-align: center;
+      padding: 4rem 0 3rem;
+    }
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    .product-detail-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .gallery-main img {
+      width: 100%;
+      height: auto;
+    }
+    .sticky-panel {
+      position: sticky;
+      top: 120px;
+    }
+    .size-selector, .color-selector {
+      display: flex;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+    }
+    .size-option, .color-swatch {
+      border: 1px solid #ccc;
+      padding: 0.6rem 1.2rem;
+      transition: 0.2s;
+      background: white;
+    }
+    .size-option.selected, .color-swatch.selected {
+      border-color: var(--color-charcoal);
+      background: var(--color-charcoal);
+      color: white;
+    }
+
+    .add-to-cart-btn {
+      width: 100%;
+      position: relative;
+      background: transparent;
+      color: var(--color-charcoal);
+      border: 1px solid var(--color-charcoal);
+      padding: 1rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      overflow: hidden;
+      isolation: isolate;
+      transition: color 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+      margin-top: 1rem;
+      font-family: var(--font-ui);
+      text-transform: uppercase;
+    }
+
+    .add-to-cart-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: var(--color-charcoal);
+      z-index: -1;
+      transition: width 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+      transform-origin: left center;
+    }
+
+    .add-to-cart-btn:hover {
+      color: white;
+      border-color: var(--color-charcoal);
+    }
+
+    .add-to-cart-btn:hover::before {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .main-header {
+        padding: 1.2rem 1.5rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .editorial-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .rediscovery-strip {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .product-detail-layout {
+        grid-template-columns: 1fr;
+      }
+      .editorial-caption {
+        padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+      }
+    }
+    /* Desktop */
+
+.nav-links{
+    display:flex;
+    gap:48px;
+}
+
+.menu-btn{
+    display:none;
+}
+/* Mobile */
+
+@media (max-width:768px){
+
+.nav-links{
+    display:none;
+}
+
+.menu-btn{
+    display:flex;
+}
+
+}
+.mobile-menu{
+
+    position:fixed;
+
+    top:0;
+    right:-100%;
+
+    width:100%;
+    height:100vh;
+
+    transition:.6s;
+
+}
+
+.mobile-menu.active{
+
+    right:0;
+
+}
+  </style>
+</head>
+<body>
+  <header class="main-header" id="mainHeader">
+    <a href="#" class="logo" data-page="home">Retro Armenia</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#" data-page="home" class="active">Home</a>
+      <a href="#" data-page="collection">Collection</a>
+      <a href="#" data-page="product">Product</a>
+      <a href="#" data-page="about">About</a>
+      <a href="#" data-page="contact">Contact</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </header>
+
+  <main id="app">
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+      <section class="hero">
+        <img src="fashion.demo.hero.png" alt="Woman in timeless silhouette" class="hero-image" loading="eager">
+        <div class="hero-content">
+          <h1>Silhouette<br>of Grace</h1>
+          <p>Modern elegance shaped by vintage poetry. The new collection arrives.</p>
+          <a href="#" class="btn-primary" data-page="collection">Discover</a>
+        </div>
+      </section>
+
+      <!-- EDITORIAL CAMPAIGN SECTION -->
+      <section class="editorial-campaign">
+        <div class="container">
+          <div class="archival-intro reveal">
+            <span class="section-label">The Archive Speaks</span>
+            <p class="archival-quote">"What is old is not lost. It waits quietly in the weave, in the cut, in the hand that remembers."</p>
+            <p class="archival-attribution">— Armenian proverb, circa 1890</p>
+            <div class="quote-line"></div>
+          </div>
+
+          <div class="editorial-grid">
+            <div class="editorial-text reveal">
+              <span class="overline">Rediscovery · Issue 01</span>
+              <h2>Threads That<br>Refuse to Fade</h2>
+              <div class="accent-line"></div>
+              <p class="body-text">
+                We search through forgotten ateliers, abandoned pattern books, and the memory of hands that once stitched by candlelight. Each Retro Armenia piece carries a fragment of that past — not as costume, but as quiet rebellion against disposability. This is fashion that remembers its own name.
+              </p>
+            </div>
+            <div class="editorial-image-wrapper reveal">
+              <img src="fashion.demo.editoralpage.png" class="main-image" loading="lazy">
+              <div class="editorial-caption">
+                <div class="caption-title">Captured in Yerevan</div>
+                <div class="caption-subtitle">Spring Collection</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rediscovery-strip reveal-stagger">
+            <div class="rediscovery-item">
+              <div class="icon-letter">R</div>
+              <h4>Reclaimed</h4>
+              <p>Forgotten textiles sourced from Armenian family archives, given new purpose.</p>
+              <div class="feature-line"></div>
+            </div>
+            <div class="rediscovery-item">
+              <div class="icon-letter">M</div>
+              <h4>Memory</h4>
+              <p>Patterns inspired by silhouettes found in photographs over a century old.</p>
+              <div class="feature-line"></div>
+            </div>
+            <div class="rediscovery-item">
+              <div class="icon-letter">H</div>
+              <h4>Handwork</h4>
+              <p>Techniques passed through generations, now practiced by a new atelier.</p>
+              <div class="feature-line"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container">
+        <span class="section-label reveal">New Arrivals</span>
+        <div class="product-grid reveal-stagger" id="homeProducts"></div>
+      </section>
+    </div>
+
+    <!-- COLLECTION PAGE -->
+    <div id="collection" class="page">
+      <div class="container collection-header reveal">
+        <h2>The Collection</h2>
+        <div class="filter-bar">
+          <span>All</span> <span>Dresses</span> <span>Knitwear</span> <span>Outerwear</span>
+        </div>
+      </div>
+      <div class="container product-grid reveal-stagger" id="collectionGrid"></div>
+    </div>
+
+    <!-- PRODUCT PAGE -->
+    <div id="product" class="page">
+      <div class="container product-detail-layout">
+        <div class="gallery-main reveal">
+          <img src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?q=80&w=800&auto=format&fit=crop" alt="Product detail">
+        </div>
+        <div class="sticky-panel reveal">
+          <h2 style="font-size:2.8rem;">Armenian Dawn Dress</h2>
+          <p style="font-size:1.3rem; margin:0.5rem 0;">$590</p>
+          <p>Soft sculptural silhouette in muted clay. Lined with organic cotton.</p>
+          <div class="color-selector"><span class="color-swatch selected">Clay</span><span class="color-swatch">Ivory</span></div>
+          <div class="size-selector"><span class="size-option selected">S</span><span class="size-option">M</span><span class="size-option">L</span></div>
+          <button class="add-to-cart-btn" id="addToCartBtn">Add to Cart — $590</button>
+          <div style="margin-top:2rem; font-size:0.9rem;">✓ Free shipping over $300<br>✓ Handcrafted in small batches</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page">
+      <div class="container reveal" style="max-width:800px; margin:0 auto; padding:4rem 1rem;">
+        <h2 style="font-size:3.5rem;">Our Philosophy</h2>
+        <p style="margin:2rem 0; font-size:1.2rem;">Retro Armenia is born from the dialogue between vintage reverence and modern femininity. We design for the woman who carries her history with lightness.</p>
+        <img src="https://images.unsplash.com/photo-1609505848912-b7c3b1b4f2d6?q=80&w=800&auto=format&fit=crop" style="width:100%; margin:2rem 0;" alt="Brand story">
+      </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+      <div class="container reveal" style="max-width:700px; margin:0 auto; padding:4rem 1rem;">
+        <h2 style="font-size:3rem;">Contact</h2>
+        <p style="margin:1.5rem 0;">Atelier inquiries & personal styling.</p>
+        <p>Yerevan, Armenia<br>studio@retroarmenia.com</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    menuButton.addEventListener("click", () => {
+    menu.classList.toggle("active");
+});
+    (function() {
+      const products = [
+        { name: "Linen Poet Blouse", price: "$320", img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=400&auto=format&fit=crop" },
+        { name: "Sculpted Wool Coat", price: "$890", img: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?q=80&w=400&auto=format&fit=crop" },
+        { name: "Vintage Wrap Dress", price: "$460", img: "https://images.unsplash.com/photo-1623609163859-ca93a4e1e4f8?q=80&w=400&auto=format&fit=crop" },
+        { name: "Cashmere Blend Top", price: "$290", img: "https://images.unsplash.com/photo-1434389677669-e08b4cda3ab1?q=80&w=400&auto=format&fit=crop" }
+      ];
+
+      function renderProductCards(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = products.map(p => `
+          <div class="product-card">
+            <div class="card-image">
+              <img src="${p.img}" alt="${p.name}" loading="lazy">
+            </div>
+            <div class="card-details">
+              <h3>${p.name}</h3>
+              <div class="price-row">
+                <span class="price">${p.price}</span>
+                <span class="view-piece-label">View Piece →</span>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      renderProductCards('homeProducts');
+      renderProductCards('collectionGrid');
+
+      const pages = document.querySelectorAll('.page');
+      const navLinks = document.querySelectorAll('[data-page]');
+      
+      function switchPage(pageId) {
+        pages.forEach(p => p.classList.remove('active'));
+        const targetPage = document.getElementById(pageId);
+        if (targetPage) {
+          targetPage.classList.add('active');
+        }
+        navLinks.forEach(link => {
+          const linkPage = link.getAttribute('data-page');
+          if (linkPage === pageId) link.classList.add('active');
+          else link.classList.remove('active');
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(initScrollReveal, 100);
+      }
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const page = link.getAttribute('data-page');
+          if (page) switchPage(page);
+        });
+      });
+
+      document.getElementById('addToCartBtn')?.addEventListener('click', function() {
+        const originalText = this.textContent;
+        this.textContent = 'Added · Thank You';
+        this.style.color = '#6B6E58';
+        this.style.borderColor = '#6B6E58';
+        setTimeout(() => {
+          this.textContent = originalText;
+          this.style.color = '';
+          this.style.borderColor = '';
+        }, 2000);
+      });
+
+      document.querySelectorAll('.size-option').forEach(opt => {
+        opt.addEventListener('click', function() {
+          this.parentElement.querySelectorAll('.size-option').forEach(s => s.classList.remove('selected'));
+          this.classList.add('selected');
+        });
+      });
+      document.querySelectorAll('.color-swatch').forEach(opt => {
+        opt.addEventListener('click', function() {
+          this.parentElement.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+          this.classList.add('selected');
+        });
+      });
+
+      const menuToggle = document.getElementById('menuToggle');
+      const navContainer = document.getElementById('navLinks');
+      menuToggle?.addEventListener('click', () => {
+        if (navContainer.style.display === 'flex') {
+          navContainer.style.display = 'none';
+        } else {
+          navContainer.style.display = 'flex';
+          navContainer.style.flexDirection = 'column';
+          navContainer.style.position = 'absolute';
+          navContainer.style.top = '70px';
+          navContainer.style.right = '1.5rem';
+          navContainer.style.background = 'white';
+          navContainer.style.padding = '1.5rem';
+          navContainer.style.color = '#2B2623';
+        }
+      });
+
+      function initScrollReveal() {
+        const revealElements = document.querySelectorAll('.reveal, .reveal-stagger');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+            }
+          });
+        }, {
+          threshold: 0.15,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => {
+          el.classList.remove('revealed');
+          observer.observe(el);
+        });
+
+        return observer;
+      }
+
+      let revealObserver = initScrollReveal();
+
+      window.addEventListener('scroll', () => {
+        const header = document.getElementById('mainHeader');
+        if (window.scrollY > 50) {
+          header.style.background = 'rgba(255,255,255,0.9)';
+          header.style.color = '#2B2623';
+          header.style.backdropFilter = 'blur(10px)';
+        } else {
+          header.style.background = 'transparent';
+          header.style.color = 'white';
+          header.style.backdropFilter = 'none';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
