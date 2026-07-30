@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us- Retro Armenia</title>
+  <style>
+  :root{
+    --ivory:#F6F2EA;
+    --sand:#EDE3D3;
+    --charcoal:#211E1B;
+    --charcoal-soft:#5C564C;
+    --bronze:#A6805A;
+    --bronze-deep:#8B6239;
+    --pomegranate:#6E2430;
+    --line: rgba(33,30,27,0.14);
+    --line-soft: rgba(33,30,27,0.08);
+    --ease: cubic-bezier(0.22,1,0.36,1);
+    --dur: 700ms;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--charcoal);
+    font-family:'Manrope',sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+
+  ::selection{background:var(--bronze); color:var(--ivory);}
+
+  h1,h2,h3,.serif{
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Manrope',sans-serif;
+    font-size:11px;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--charcoal-soft);
+    font-weight:600;
+  }
+
+  .wrap{
+    max-width:1320px;
+    margin:0 auto;
+    padding:0 56px;
+  }
+
+  @media (max-width:900px){
+    .wrap{padding:0 24px;}
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .reveal.scale{ transform: translateY(20px) scale(0.98); }
+  .reveal.in-view{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+  .reveal.d1{transition-delay:.1s;}
+  .reveal.d2{transition-delay:.22s;}
+  .reveal.d3{transition-delay:.34s;}
+  .reveal.d4{transition-delay:.46s;}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .reveal.in-view{ opacity:1; transform:none; transition:none; }
+    *{ scroll-behavior:auto !important; }
+  }
+
+  /* ---------- top bar ---------- */
+  header.topbar{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(246,242,234,0.86);
+    backdrop-filter: blur(10px) saturate(140%);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .topbar-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 56px;
+    max-width:1320px; margin:0 auto;
+  }
+  @media (max-width:900px){ .topbar-inner{padding:18px 24px;} }
+  .logo{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+  }
+  .logo span{ color:var(--bronze); }
+  
+  .topbar-nav{
+    display:flex; gap:40px;
+    font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--charcoal-soft);
+  }
+  .topbar-nav a{ position:relative; padding-bottom:4px; transition:color .4s var(--ease); }
+  .topbar-nav a::after{
+    content:''; position:absolute; left:50%; bottom:0; width:100%; height:1px;
+    background:var(--bronze);
+    transform:translateX(-50%) scaleX(0); transform-origin:center;
+    transition:transform .5s var(--ease);
+  }
+  .topbar-nav a:hover{ color:var(--charcoal); }
+  .topbar-nav a:hover::after{ transform:translateX(-50%) scaleX(1); }
+  .topbar-nav a.active::after{ transform:translateX(-50%) scaleX(1); }
+  .topbar-nav a.active{ color:var(--charcoal); }
+
+  /* ---------- SECTION 1 — Editorial intro (16:9 format) ---------- */
+  .hero{
+    position:relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-top: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow:hidden;
+  }
+
+  .hero-bg-video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  .video-desktop { display: block; }
+  .video-mobile { display: none; }
+
+  @media (max-width: 760px) {
+    .hero { aspect-ratio: 16 / 9; }
+    .video-desktop { display: none; }
+    .video-mobile { display: block; }
+  }
+
+  /* Overlay elements with keywords */
+  .hero-overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--ivory);
+    padding: 30px 50px;
+  margin-top: 20%;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(246, 242, 234, 0.2);
+  }
+
+  .fashion-keywords {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .fashion-keywords span {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(18px, 3.5vw, 42px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ivory);
+  }
+
+  .fashion-keywords .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--bronze);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(10px, 1.2vw, 14px);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--sand);
+    opacity: 0.9;
+  }
+    /* --- Orbital Showcase Section --- */
+    .showcase {
+      padding: 8rem 2rem;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-description {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 4rem auto;
+    }
+
+    .orbital-container {
+      position: relative;
+      width: 350px;
+      height: 350px;
+      margin: 0 auto;
+      border: 1px dashed rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      animation: rotateOrbital 25s linear infinite;
+    }
+
+    .orbital-container:hover {
+      animation-play-state: paused;
+    }
+
+    .orbital-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .orbital-item {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform var(--transition-smooth), border-color var(--transition-fast), box-shadow var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .orbital-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .orbital-item:hover {
+      transform: scale(1.2);
+      border-color: #000;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    /* Position 4 orbiting nodes around the circle */
+    .orbital-item:nth-child(1) { top: -40px; left: calc(50% - 40px); }
+    .orbital-item:nth-child(2) { bottom: -40px; left: calc(50% - 40px); }
+    .orbital-item:nth-child(3) { left: -40px; top: calc(50% - 40px); }
+    .orbital-item:nth-child(4) { right: -40px; top: calc(50% - 40px); }
+
+    @keyframes rotateOrbital {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* --- Brand Story Grid --- */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 4rem auto 8rem auto;
+      padding: 0 2rem;
+    }
+
+    .info-card {
+      background-color: var(--card-bg);
+      padding: 3rem 2rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .info-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .info-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .info-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* --- Team Stack Section --- */
+    .team-section {
+      padding: 6rem 2rem;
+      text-align: center;
+
+    }
+
+    .team-stack {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 4rem;
+    }
+
+    .team-member {
+      position: relative;
+      width: 340px;
+      height: 400px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-left: -40px;
+      border: 3px solid var(--bg-color);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      transition: transform var(--transition-smooth), z-index 0s;
+      cursor: pointer;
+    }
+
+    .team-member:first-child {
+      margin-left: 0;
+    }
+
+    .team-member img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .team-member-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.5rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      color: #ffffff;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .team-member-info h4 {
+      font-size: 0.85rem;
+    }
+
+    .team-member-info p {
+      font-size: 0.75rem;
+      color: #cccccc;
+    }
+
+    /* Stack hover state */
+    .team-member:hover {
+      transform: translateY(-20px) scale(1.1);
+      z-index: 10;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .team-member:hover .team-member-info {
+      opacity: 1;
+    }
+
+    /* --- Text CTA Section --- */
+    .text-cta {
+      padding: 10rem 2rem;
+      text-align: center;
+    }
+
+    .cta-text {
+      font-size: clamp(1.8rem, 4vw, 3.5rem);
+      font-weight: 300;
+      letter-spacing: 2px;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.3;
+    }
+
+    .cta-link {
+      display: inline-block;
+      margin-top: 2rem;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--text-main);
+      padding-bottom: 4px;
+      transition: color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .cta-link:hover {
+      color: var(--text-muted);
+      border-color: var(--text-muted);
+    }
+
+    /* --- Responsive Queries --- */
+    @media (max-width: 768px) {
+      .header { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      
+      .desktop-video { display: none; }
+      .mobile-video { display: block; }
+
+      .hero-title { font-size: 2.5rem; }
+      
+      .orbital-container {
+        width: 250px;
+        height: 250px;
+      }
+
+      .orbital-item {
+        width: 60px;
+        height: 60px;
+      }
+
+      .orbital-item:nth-child(1) { top: -30px; left: calc(50% - 30px); }
+      .orbital-item:nth-child(2) { bottom: -30px; left: calc(50% - 30px); }
+      .orbital-item:nth-child(3) { left: -30px; top: calc(50% - 30px); }
+      .orbital-item:nth-child(4) { right: -30px; top: calc(50% - 30px); }
+
+      .team-member {
+        width: 100px;
+        height: 140px;
+        margin-left: -25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="logo">RETRO <span>ARMENIA</span></a>
+    <nav class="topbar-nav">
+      <a href="index.html">Home</a>
+      <a href="collection.html" >Collection</a>
+      <a href="about.html" class="active" >About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- SECTION 1 — Hero Video 16:9 with Keywords -->
+<section class="hero">
+  <video class="hero-bg-video video-desktop" autoplay loop muted playsinline>
+    <source src="about.hero.desktop.mp4" type="video/mp4">
+  </video>
+  <video class="hero-bg-video video-mobile" autoplay loop muted playsinline>
+    <source src="collection.hero.mobile.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-overlay">
+    <div class="fashion-keywords">
+      <span>Couture</span>
+      <i class="dot"></i>
+      <span>Heritage</span>
+    </div>
+    <div class="hero-subtitle">High Tailoring & Archival Aesthetics</div>
+  </div>
+</section>
+
+  <!-- Orbital Image Wheel Showcase -->
+  
+  <!-- Information Blocks -->
+  <section class="info-grid">
+    <div class="info-card">
+      <h3>Conscious Design</h3>
+      <p>Every piece is ethically sourced and meticulously crafted using sustainable textiles built to endure beyond seasonal trends.</p>
+    </div>
+    <div class="info-card">
+      <h3>Architectural Tailoring</h3>
+      <p>We blend modern structure with fluid silhouettes, striking a balance between minimalist aesthetics and effortless everyday wear.</p>
+    </div>
+    <div class="info-card">
+      <h3>Unrivaled Detail</h3>
+      <p>From custom hardware to hidden stitch closures, every element of our garments undergoes precise quality control.</p>
+    </div>
+  </section>
+
+  <!-- Team Stack Section -->
+  <section class="team-section">
+    <h2 class="section-title">Meet the Visionaries</h2>
+    <p class="section-description">The creative force driving our aesthetic standards.</p>
+
+    <div class="team-stack">
+      <div class="team-member">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Creative Director">
+        <div class="team-member-info">
+          <h4>Elena Vance</h4>
+          <p>Creative Director</p>
+        </div>
+      </div>
+      <div class="team-member">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Head Tailor">
+        <div class="team-member-info">
+          <h4>Marcus Thorne</h4>
+          <p>Head Tailor</p>
+        </div>
+      </div>
+      <div class="team-member">
+        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Lead Designer">
+        <div class="team-member-info">
+          <h4>Sophia Lin</h4>
+          <p>Lead Designer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Text-only CTA -->
+  <section class="text-cta">
+    <p class="cta-text">Discover a wardrobe crafted for the modern minimalist.</p>
+    <a href="collection.html" class="cta-link">Explore the New Collection &rarr;</a>
+  </section>
+
+</body>
+</html>
