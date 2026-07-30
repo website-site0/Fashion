@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Retro Armenia — Modern women's fashion inspired by timeless vintage silhouettes. Quiet luxury, editorial elegance.">
-  <meta property="og:title" content="Retro Armenia | Timeless Silhouettes">
+  <meta name="description" content="Maison Noir — Modern women's fashion inspired by timeless vintage silhouettes. Quiet luxury, editorial elegance.">
+  <meta property="og:title" content="Maison Noir | Timeless Silhouettes">
   <meta property="og:description" content="Contemporary elegance with vintage soul. Discover the new collection.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1612423284934-2850a4ea6e0f?q=80&w=1000&auto=format&fit=crop">
   <meta property="og:type" content="website">
-  <title>Retro Armenia | Timeless Modern Fashion</title>
+  <title>Maison Noir | Timeless Modern Fashion</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Ավելացվել են նոր տառատեսակներ՝ Prata լոգոյի համար, և Garamond/Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Prata&display=swap" rel="stylesheet">
   <style>
     /* ----- CSS VARIABLES & RESET ----- */
@@ -40,10 +39,9 @@
       --transition-reveal: 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
       --transition-feature: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
       
-      /* --- Նոր Տառատեսակներ --- */
       --font-display: 'Cormorant Garamond', serif;
       --font-ui: 'Inter', sans-serif;
-      --font-logo: 'Prata', serif; /* New elegant serif font */
+      --font-logo: 'Prata', serif;
       
       --spacing-xl: clamp(4rem, 10vw, 8rem);
       --spacing-lg: clamp(2.5rem, 6vw, 5rem);
@@ -153,53 +151,50 @@
     }
 
     /* ----- HEADER ----- */
-   .main-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  padding: 1.5rem 3rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* Հանվել է mix-blend-mode-ը, որպեսզի գույները չանաղավաղվեն */
-  color: white;
-  transition: background 0.3s ease, color 0.3s ease, padding 0.3s ease;
-  pointer-events: none;
-}
-.main-header > * { pointer-events: auto; }
+    .main-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      transition: background 0.3s ease, color 0.3s ease, padding 0.3s ease;
+      pointer-events: none;
+    }
+    .main-header > * { pointer-events: auto; }
 
-/* ----- LOGO STYLE & BRONZE COLOR ----- */
-.logo {
-  font-family: 'Fraunces', serif;
-  font-size: 1.6rem;
-  font-weight: 400;
-  letter-spacing: 0.32em;
-  color: var(--color-bronze) !important; /* Հիմնական տեքստը՝ բրոնզագույն */
-  text-decoration: none;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  position: relative;
-  padding: 4px;
-  transition: letter-spacing 0.5s var(--transition-editorial), opacity 0.3s ease;
-}
+    .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      color: var(--color-bronze) !important;
+      text-decoration: none;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      position: relative;
+      padding: 4px;
+      transition: letter-spacing 0.5s var(--transition-editorial), opacity 0.3s ease;
+    }
 
-.logo .logo-main,
-.logo .logo-accent {
-  color: var(--color-bronze) !important; /* Ամբողջ լոգոն դառնում է բրոնզագույն */
-}
+    .logo .logo-main,
+    .logo .logo-accent {
+      color: var(--color-bronze) !important;
+    }
 
-/* Hover effect */
-.logo:hover {
-  letter-spacing: 0.4em;
-  opacity: 0.85; /* Նուրբ թափանցիկություն փոխազդեցության համար */
-}
-    
+    .logo:hover {
+      letter-spacing: 0.4em;
+      opacity: 0.85;
+    }
+        
     .logo:hover .logo-accent {
-        color: var(--color-bronze); /* Ensure the span also turns same bronze */
+      color: var(--color-bronze);
     }
 
     .nav-links {
@@ -240,7 +235,7 @@
       opacity: 0.75;
     }
 
-    /* ----- HERO (unchanged) ----- */
+    /* ----- HERO ----- */
     .hero {
       position: relative;
       height: 100vh;
@@ -252,37 +247,32 @@
       overflow: hidden;
       background: #e9e3d9;
     }
- .hero-video{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    z-index:0;
-    filter:brightness(.82);
-}
-.hero::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        to right,
-        rgba(0,0,0,.35),
-        rgba(0,0,0,.08)
-    );
-    z-index:1;
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-}
-    @keyframes slowReveal {
-      0% { transform: scale(1.12); opacity: 0.6; }
-      100% { transform: scale(1.02); opacity: 1; }
+    .hero-video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:0;
+      filter:brightness(.82);
     }
-    .hero-content {
-      position: relative; z-index: 2; max-width: 600px; color: white;
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+          to right,
+          rgba(0,0,0,.35),
+          rgba(0,0,0,.08)
+      );
+      z-index:1;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width: 600px; 
+      color: white;
       text-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     .hero-content h1 { font-size: clamp(3.5rem, 8vw, 6rem); margin-bottom: 1.2rem; }
@@ -302,7 +292,7 @@
     .btn-primary:hover { color: var(--color-charcoal); }
     .btn-primary:hover::before { width: 100%; }
 
-    /* ----- EDITORIAL CAMPAIGN (unchanged) ----- */
+    /* ----- EDITORIAL CAMPAIGN ----- */
     .editorial-campaign { padding: var(--spacing-xl) 0; background: var(--color-warm-white); }
     .archival-intro { text-align: center; max-width: 700px; margin: 0 auto 5rem; padding: 2rem 1rem; }
     .archival-quote { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-style: italic; color: var(--color-deep-cocoa); margin:1rem 0; }
@@ -322,7 +312,7 @@
     .feature-line { width:0; height:1px; background:var(--color-antique-gold); margin:1rem auto 0; transition: width 0.5s; }
     .rediscovery-item:hover .feature-line { width:30px; }
 
-    /* ----- NEW ARRIVALS EDITORIAL SHOWCASE (unchanged) ----- */
+    /* ----- NEW ARRIVALS EDITORIAL SHOWCASE ----- */
     .new-arrivals-editorial {
       padding: var(--spacing-xl) 0;
       background: var(--color-warm-white);
@@ -420,12 +410,13 @@
       gap: 0.25rem;
       position: relative;
     }
-    /* Հեռացնում է տակի գծերը և կապույտ գույնը New Arrivals-ի հղումներից */
-.showcase-feature, 
-.editorial-product-card {
-    text-decoration: none;
-    color: inherit;
-}
+
+    .showcase-feature, 
+    .editorial-product-card {
+      text-decoration: none;
+      color: inherit;
+    }
+    
     .product-name {
       font-family: var(--font-display);
       font-size: 1.5rem;
@@ -434,7 +425,6 @@
       color: var(--color-deep-cocoa);
       transition: color 0.4s;
       margin: 0;
-      
     }
     
     .price-and-action {
@@ -519,7 +509,7 @@
       }
     }
 
-    /* ----- OTHER PAGES (unchanged) ----- */
+    /* ----- OTHER PAGES ----- */
     .page { display: none; padding-top: 100px; min-height: 100vh; }
     .page.active { display: block; }
     .collection-header, .about-header { text-align: center; padding: 4rem 0 3rem; }
@@ -547,117 +537,116 @@
       .main-header { padding: 1.2rem 1.5rem; }
       .nav-links { display: none; }
       .menu-toggle { display: block; }
-      .logo { font-size: 1.3rem; letter-spacing: 0.28em; gap: 0.4em; } /* Adjust logo for mobile */
+      .logo { font-size: 1.3rem; letter-spacing: 0.28em; gap: 0.4em; }
       .editorial-grid { grid-template-columns: 1fr; }
       .rediscovery-strip { grid-template-columns: 1fr; }
       .product-detail-layout { grid-template-columns: 1fr; }
       .hero { padding-left: 0; justify-content: center; }
       .hero-content { padding: 0 32px; }
     }
+
     /* ----- FOOTER STYLING ----- */
-.site-footer {
-  background-color: #1e1b18; /* Մուգ շագանակագույն ֆոն */
-  color: #d6c9b9;
-  padding: 5rem 0 2rem 0;
-  font-family: var(--font-ui);
-}
+    .site-footer {
+      background-color: #1e1b18;
+      color: #d6c9b9;
+      padding: 5rem 0 2rem 0;
+      font-family: var(--font-ui);
+    }
 
-.footer-top {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 4rem;
-}
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
 
-.footer-brand .footer-logo {
-  font-family: 'Prata', serif;
-  font-size: 1.5rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  display: inline-block;
-}
+    .footer-brand .footer-logo {
+      font-family: 'Prata', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
 
-.footer-brand .logo-retro {
-  color: #ffffff;
-}
+    .footer-brand .logo-retro {
+      color: #ffffff;
+    }
 
-.footer-brand .logo-armenia {
-  color: var(--color-antique-gold);
-}
+    .footer-brand .logo-armenia {
+      color: var(--color-antique-gold);
+    }
 
-.footer-brand p {
-  color: #a3988c;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  max-width: 320px;
-  font-weight: 300;
-}
+    .footer-brand p {
+      color: #a3988c;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      max-width: 320px;
+      font-weight: 300;
+    }
 
-.footer-column-title {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: #a3988c;
-  margin-bottom: 1.5rem;
-  font-weight: 500;
-}
+    .footer-column-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #a3988c;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
 
-.footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-.footer-links li {
-  margin-bottom: 0.8rem;
-}
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
 
-.footer-links a {
-  color: #e8dfd4;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 300;
-  transition: opacity 0.3s ease;
-}
+    .footer-links a {
+      color: #e8dfd4;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 300;
+      transition: opacity 0.3s ease;
+    }
 
-.footer-links a:hover {
-  opacity: 0.7;
-}
+    .footer-links a:hover {
+      opacity: 0.7;
+    }
 
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 2rem;
-  font-size: 0.8rem;
-  color: #8c827a;
-}
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      font-size: 0.8rem;
+      color: #8c827a;
+    }
 
-/* Footer Responsive Adaption */
-@media (max-width: 900px) {
-  .footer-top {
-    grid-template-columns: 1fr 1fr;
-  }
-}
+    @media (max-width: 900px) {
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
 
-@media (max-width: 550px) {
-  .footer-top {
-    grid-template-columns: 1fr;
-  }
-}
+    @media (max-width: 550px) {
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
   <header class="main-header" id="mainHeader">
-    <!-- Updated logo structure with spans for colors -->
     <a href="#" class="logo" data-page="home">
-        <span class="logo-main">Retro</span>
-        <span class="logo-accent">Armenia</span>
+        <span class="logo-main">MAISON</span>
+        <span class="logo-accent">NOIR</span>
     </a>
     <nav class="nav-links" id="navLinks">
       <a href="index.html" data-page="home" class="active">Home</a>
-      <a href="collection.html" >Collection</a>
+      <a href="collection.html">Collection</a>
       <a href="about.html" data-page="about">About</a>
-      <a href="conact.html" data-page="contact">Contact</a>
+      <a href="contact.html" data-page="contact">Contact</a>
     </nav>
     <button class="menu-toggle" id="menuToggle">☰</button>
   </header>
@@ -665,39 +654,39 @@
   <main id="app">
     <!-- HOME PAGE -->
     <div id="home" class="page active">
-   <section class="hero">
+      <section class="hero">
 
-    <video
-        class="hero-video"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto">
+        <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto">
 
-        <source src="hero-desckop.mp4" media="(min-width:769px)">
-        <source src="hero-mobile.mp4" media="(max-width:768px)">
+            <source src="hero-desckop.mp4" media="(min-width:769px)">
+            <source src="hero-mobile.mp4" media="(max-width:768px)">
 
-    </video>
+        </video>
 
-    <div class="hero-content">
-        <h1>Silhouette of Grace</h1>
+        <div class="hero-content">
+            <h1>Silhouette of Grace</h1>
 
-        <p>
-            Modern elegance shaped by vintage poetry.
-        </p>
+            <p>
+                Modern elegance shaped by vintage poetry.
+            </p>
 
-        <a href="#down" class="btn-primary">Discover</a>
-    </div>
+            <a href="#down" class="btn-primary">Discover</a>
+        </div>
 
-</section>
+      </section>
 
       <section class="editorial-campaign" id="down">
         <div class="container">
           <div class="archival-intro reveal">
             <span class="section-label">The Archive Speaks</span>
             <p class="archival-quote">"What is old is not lost. It waits quietly in the weave, in the cut, in the hand that remembers."</p>
-            <p class="archival-attribution">— Armenian proverb, circa 1890</p>
+            <p class="archival-attribution">— Classic Design Proverb</p>
             <div class="quote-line"></div>
           </div>
           <div class="editorial-grid">
@@ -705,21 +694,21 @@
               <span class="overline">Rediscovery · Issue 01</span>
               <h2>Threads That<br>Refuse to Fade</h2>
               <div class="accent-line"></div>
-              <p class="body-text">We search through forgotten ateliers, abandoned pattern books, and the memory of hands that once stitched by candlelight.</p>
+              <p class="body-text">We search through forgotten ateliers, abandoned pattern books, and time-honored techniques of classic tailoring.</p>
             </div>
             <div class="editorial-image-wrapper reveal">
               <img src="fashion.demo.editoralpage.png" class="main-image" loading="lazy">
             </div>
           </div>
           <div class="rediscovery-strip reveal-stagger">
-            <div class="rediscovery-item"><div class="icon-letter">R</div><h4>Reclaimed</h4><p>Forgotten textiles sourced from Armenian family archives.</p><div class="feature-line"></div></div>
+            <div class="rediscovery-item"><div class="icon-letter">R</div><h4>Reclaimed</h4><p>Forgotten textiles sourced from vintage archives.</p><div class="feature-line"></div></div>
             <div class="rediscovery-item"><div class="icon-letter">M</div><h4>Memory</h4><p>Patterns inspired by silhouettes over a century old.</p><div class="feature-line"></div></div>
             <div class="rediscovery-item"><div class="icon-letter">H</div><h4>Handwork</h4><p>Techniques passed through generations.</p><div class="feature-line"></div></div>
           </div>
         </div>
       </section>
 
-      <!-- NEW ARRIVALS EDITORIAL SHOWCASE (unchanged) -->
+      <!-- NEW ARRIVALS EDITORIAL SHOWCASE -->
       <section class="new-arrivals-editorial">
         <div class="container">
           <div class="editorial-header reveal">
@@ -728,7 +717,6 @@
           </div>
 
           <div class="editorial-showcase-grid reveal-stagger" id="editorialShowcase">
-            <!-- Feature product (dominates visually) -->
             <a href="product.html?id=vintage_wrap_dress" class="showcase-feature">
               <div class="editorial-product-card">
                 <div class="card-visual">
@@ -743,9 +731,8 @@
                 </div>
               </div>
             </a>
-            <!-- Secondary products (asymmetric) -->
             <div class="showcase-secondary">
-              <a href="product.html?id=linen_poet_blouse"class="editorial-product-card">
+              <a href="product.html?id=linen_poet_blouse" class="editorial-product-card">
                 <div class="card-visual">
                   <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=600&auto=format&fit=crop" alt="Linen Poet Blouse" loading="lazy">
                 </div>
@@ -775,7 +762,7 @@
       </section>
     </div>
 
-    <!-- COLLECTION PAGE (unchanged) -->
+    <!-- COLLECTION PAGE -->
     <div id="collection" class="page">
       <div class="container collection-header reveal">
         <h2>The Collection</h2>
@@ -784,12 +771,12 @@
       <div class="container product-grid reveal-stagger" id="collectionGrid"></div>
     </div>
 
-    <!-- PRODUCT PAGE (unchanged) -->
+    <!-- PRODUCT PAGE -->
     <div id="product" class="page">
       <div class="container product-detail-layout">
         <div class="gallery-main reveal"><img src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?q=80&w=800&auto=format&fit=crop" alt="Product"></div>
         <div class="sticky-panel reveal">
-          <h2 style="font-size:2.8rem;">Armenian Dawn Dress</h2>
+          <h2 style="font-size:2.8rem;">Classic Dawn Dress</h2>
           <p style="font-size:1.3rem; margin:0.5rem 0;">$590</p>
           <div class="color-selector"><span class="color-swatch selected">Clay</span><span class="color-swatch">Ivory</span></div>
           <div class="size-selector"><span class="size-option selected">S</span><span class="size-option">M</span><span class="size-option">L</span></div>
@@ -798,20 +785,20 @@
       </div>
     </div>
 
-    <!-- ABOUT PAGE (unchanged) -->
+    <!-- ABOUT PAGE -->
     <div id="about" class="page">
       <div class="container reveal" style="max-width:800px; margin:0 auto; padding:4rem 1rem;">
         <h2 style="font-size:3.5rem;">Our Philosophy</h2>
-        <p style="margin:2rem 0;">Retro Armenia is born from the dialogue between vintage reverence and modern femininity.</p>
+        <p style="margin:2rem 0;">Maison Noir is born from the dialogue between vintage reverence and modern femininity.</p>
         <img src="https://images.unsplash.com/photo-1609505848912-b7c3b1b4f2d6?q=80&w=800&auto=format&fit=crop" style="width:100%;" alt="Brand">
       </div>
     </div>
 
-    <!-- CONTACT PAGE (unchanged) -->
+    <!-- CONTACT PAGE -->
     <div id="contact" class="page">
       <div class="container reveal" style="max-width:700px; margin:0 auto; padding:4rem 1rem;">
         <h2 style="font-size:3rem;">Contact</h2>
-        <p>Yerevan, Armenia<br>studio@retroarmenia.com</p>
+        <p>Fashion District, Atelier Studio<br>contact@maisonnoir.com</p>
       </div>
     </div>
   </main>
@@ -823,9 +810,9 @@
         <!-- Brand Info -->
         <div class="footer-brand">
           <div class="footer-logo">
-            <span class="logo-retro">RETRO</span> <span class="logo-armenia">ARMENIA</span>
+            <span class="logo-retro">MAISON</span> <span class="logo-armenia">NOIR</span>
           </div>
-          <p>A maison of quiet tailoring, rooted in Yerevan.</p>
+          <p>A maison of quiet tailoring and understated luxury.</p>
           <p>Founded on the belief that elegance is something remembered, not invented.</p>
         </div>
 
@@ -833,7 +820,7 @@
         <div class="footer-column">
           <h4 class="footer-column-title">Collection</h4>
           <ul class="footer-links">
-            <li><a href="catergory.dresses.html">Dresses</a></li>
+            <li><a href="category.dresses.html">Dresses</a></li>
             <li><a href="category.tops.html">Tops/Skirt</a></li>
             <li><a href="category.knitwear.html">Knitwear</a></li>
             <li><a href="category.jeans.html">Jeans/Denim</a></li>
@@ -864,13 +851,13 @@
 
       <!-- Footer Bottom -->
       <div class="footer-bottom">
-        <p>© 2026 Retro Armenia. All rights reserved.</p>
+        <p>© 2026 Maison Noir. All rights reserved.</p>
       </div>
     </div>
   </footer>
+
   <script>
     (function() {
-      // Populate collection grid with standard cards
       const products = [
         { name: "Linen Poet Blouse", price: "$320", img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=400&auto=format&fit=crop" },
         { name: "Sculpted Wool Coat", price: "$890", img: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?q=80&w=400&auto=format&fit=crop" },
@@ -971,12 +958,12 @@
           header.style.background = 'rgba(255,255,255,0.9)';
           header.style.color = '#2B2623';
           header.style.backdropFilter = 'blur(10px)';
-          header.style.padding = '1rem 3rem'; // Smooth shrink padding on scroll
+          header.style.padding = '1rem 3rem';
         } else {
           header.style.background = 'transparent';
           header.style.color = 'white';
           header.style.backdropFilter = 'none';
-          header.style.padding = '1.5rem 3rem'; // Original padding
+          header.style.padding = '1.5rem 3rem';
         }
       });
     })();
