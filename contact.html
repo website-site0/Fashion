@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Retro Armenia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--white);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 40px; }
+
+  /* ---------- Header ---------- */
+   :root{
+    --ivory:#F6F2EA;
+    --sand:#EDE3D3;
+    --charcoal:#211E1B;
+    --charcoal-soft:#5C564C;
+    --bronze:#A6805A;
+    --bronze-deep:#8B6239;
+    --pomegranate:#6E2430;
+    --line: rgba(33,30,27,0.14);
+    --line-soft: rgba(33,30,27,0.08);
+    --ease: cubic-bezier(0.22,1,0.36,1);
+    --dur: 700ms;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--charcoal);
+    font-family:'Manrope',sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+
+  ::selection{background:var(--bronze); color:var(--ivory);}
+
+  h1,h2,h3,.serif{
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Manrope',sans-serif;
+    font-size:11px;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--charcoal-soft);
+    font-weight:600;
+  }
+
+  .wrap{
+    max-width:1320px;
+    margin:0 auto;
+    padding:0 56px;
+  }
+
+  @media (max-width:900px){
+    .wrap{padding:0 24px;}
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .reveal.scale{ transform: translateY(20px) scale(0.98); }
+  .reveal.in-view{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+  .reveal.d1{transition-delay:.1s;}
+  .reveal.d2{transition-delay:.22s;}
+  .reveal.d3{transition-delay:.34s;}
+  .reveal.d4{transition-delay:.46s;}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .reveal.in-view{ opacity:1; transform:none; transition:none; }
+    *{ scroll-behavior:auto !important; }
+  }
+
+  /* ---------- top bar ---------- */
+  header.topbar{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(246,242,234,0.86);
+    backdrop-filter: blur(10px) saturate(140%);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .topbar-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 56px;
+    max-width:1320px; margin:0 auto;
+  }
+  @media (max-width:900px){ .topbar-inner{padding:18px 24px;} }
+  .logo{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+  }
+  .logo span{ color:var(--bronze); }
+  
+  .topbar-nav{
+    display:flex; gap:40px;
+    font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--charcoal-soft);
+  }
+  .topbar-nav a{ position:relative; padding-bottom:4px; transition:color .4s var(--ease); }
+  .topbar-nav a::after{
+    content:''; position:absolute; left:50%; bottom:0; width:100%; height:1px;
+    background:var(--bronze);
+    transform:translateX(-50%) scaleX(0); transform-origin:center;
+    transition:transform .5s var(--ease);
+  }
+  .topbar-nav a:hover{ color:var(--charcoal); }
+  .topbar-nav a:hover::after{ transform:translateX(-50%) scaleX(1); }
+  .topbar-nav a.active::after{ transform:translateX(-50%) scaleX(1); }
+  .topbar-nav a.active{ color:var(--charcoal); }
+
+  /* ---------- SECTION 1 — Editorial intro (16:9 format) ---------- */
+  .hero{
+    position:relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-top: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow:hidden;
+  }
+
+  .hero-bg-video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  .video-desktop { display: block; }
+  .video-mobile { display: none; }
+
+  @media (max-width: 760px) {
+    .hero { aspect-ratio: 16 / 9; }
+    .video-desktop { display: none; }
+    .video-mobile { display: block; }
+  }
+
+  /* Overlay elements with keywords */
+  .hero-overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--ivory);
+    padding: 30px 50px;
+  margin-top: 20%;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(246, 242, 234, 0.2);
+  }
+
+  .fashion-keywords {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .fashion-keywords span {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(18px, 3.5vw, 42px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ivory);
+  }
+
+  .fashion-keywords .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--bronze);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(10px, 1.2vw, 14px);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--sand);
+    opacity: 0.9;
+  }
+
+  /* ---------- Measuring tape divider (signature element) ---------- */
+  .tape{
+    position:relative;
+    height:64px;
+    margin:20px 0 10px;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .tape-inner{
+    position:absolute; inset:0;
+    display:flex; align-items:center;
+  }
+  .tape svg{ display:block; width:100%; height:100%; }
+  .tape-label{
+    position:absolute; right:40px; top:50%; transform:translateY(-50%);
+    background:var(--white); padding-left:16px;
+    font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Contact section ---------- */
+  .contact{
+    padding:80px 0 100px;
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:0;
+  }
+  .info{
+    padding-right:70px;
+    border-right:1px solid var(--line);
+  }
+  .info h2{
+    font-family:'Fraunces', serif; font-weight:450;
+    font-size:28px; margin-bottom:34px;
+  }
+  .swatch{
+    padding:22px 0;
+    border-top:1px solid var(--line);
+  }
+  .swatch:last-of-type{ border-bottom:1px solid var(--line); }
+  .swatch .tag{
+    font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--thread); margin-bottom:8px; display:block;
+  }
+  .swatch p, .swatch a{
+    font-size:15.5px; line-height:1.6; color:var(--ink);
+  }
+  .swatch a{ border-bottom:1px solid var(--line); transition:border-color .2s; }
+  .swatch a:hover, .swatch a:focus-visible{ border-color:var(--ink); }
+
+  .social{ display:flex; gap:14px; margin-top:38px; }
+  .social a{
+    position:relative;
+    display:inline-flex; align-items:center; justify-content:center;
+    width:46px; height:46px;
+    border:1px solid var(--line);
+    border-radius:50%;
+    color:var(--ink);
+    overflow:hidden;
+    transition:border-color .35s ease, transform .35s ease, box-shadow .35s ease;
+  }
+  .social a svg{
+    width:17px; height:17px;
+    position:relative; z-index:1;
+    transition:transform .35s ease, color .35s ease;
+  }
+  .social a::before{
+    content:'';
+    position:absolute; inset:0;
+    background:var(--thread);
+    border-radius:50%;
+    transform:scale(0);
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+    z-index:0;
+  }
+  .social a:hover, .social a:focus-visible{
+    border-color:var(--thread);
+    transform:translateY(-3px);
+    box-shadow:0 8px 18px -8px rgba(192,139,122,.55);
+  }
+  .social a:hover::before, .social a:focus-visible::before{ transform:scale(1); }
+  .social a:hover svg, .social a:focus-visible svg{ color:var(--white); transform:scale(1.08); }
+  .social a:focus-visible{ outline:2px solid var(--thread); outline-offset:3px; }
+
+  /* ---------- Form ---------- */
+  form{ padding-left:70px; }
+  .row{ display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  .field{ margin-bottom:30px; position:relative; }
+  .field label{
+    display:block; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-soft); margin-bottom:10px;
+  }
+  .field input,
+  .field select,
+  .field textarea{
+    width:100%;
+    border:none;
+    border-bottom:1px solid var(--line);
+    background:transparent;
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    color:var(--ink);
+    padding:8px 2px 12px;
+    transition:border-color .25s ease;
+  }
+  .field select{ appearance:none; -webkit-appearance:none; cursor:pointer; }
+  .field textarea{ resize:vertical; min-height:100px; }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus{
+    outline:none; border-color:var(--thread);
+  }
+  .field input::placeholder,
+  .field textarea::placeholder{ color:#C7C3BA; }
+
+  .select-wrap{ position:relative; }
+  .select-wrap::after{
+    content:'—'; position:absolute; right:4px; bottom:12px;
+    font-size:13px; color:var(--ink-soft); pointer-events:none;
+  }
+
+  .submit{
+    margin-top:12px;
+    display:inline-flex; align-items:center; gap:14px;
+    background:var(--ink); color:var(--white);
+    border:none; padding:16px 34px;
+    font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    cursor:pointer;
+    transition:background .25s ease, transform .25s ease;
+  }
+  .submit:hover, .submit:focus-visible{ background:var(--thread); }
+  .submit svg{ width:14px; height:14px; transition:transform .25s ease; }
+  .submit:hover svg{ transform:translateX(4px); }
+
+  .confirm{
+    margin-top:18px; font-size:13px; color:var(--thread);
+    opacity:0; transition:opacity .3s ease;
+  }
+  .confirm.show{ opacity:1; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:30px 0;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  footer .logo{ font-size:14px; }
+  footer .fine{ font-size:12px; color:var(--ink-soft); letter-spacing:.04em; }
+
+  /* ---------- Reveal ---------- */
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px){
+    .wrap{ padding:0 22px; }
+    .hero{ grid-template-columns:1fr; gap:28px; padding:56px 0 40px; }
+    .navlinks{ gap:22px; }
+    .contact{ grid-template-columns:1fr; }
+    .info{ border-right:none; border-bottom:1px solid var(--line); padding-right:0; padding-bottom:50px; margin-bottom:50px; }
+    form{ padding-left:0; }
+    .row{ grid-template-columns:1fr; gap:0; }
+    footer{ flex-direction:column; gap:10px; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="logo">RETRO <span>ARMENIA</span></a>
+    <nav class="topbar-nav">
+      <a href="index.html">Home</a>
+      <a href="collection.html" >Collection</a>
+      <a href="about.html" >About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- SECTION 1 — Hero Video 16:9 with Keywords -->
+<section class="hero">
+  <video class="hero-bg-video video-desktop" autoplay loop muted playsinline>
+    <source src="contact.hero.desktop.mp4" type="video/mp4">
+  </video>
+  <video class="hero-bg-video video-mobile" autoplay loop muted playsinline>
+    <source src="collection.hero.mobile.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-overlay">
+    <div class="fashion-keywords">
+      <span>Couture</span>
+      <i class="dot"></i>
+      <span>Heritage</span>
+    </div>
+    <div class="hero-subtitle">High Tailoring & Archival Aesthetics</div>
+  </div>
+</section>
+
+
+<section class="wrap hero reveal">
+  <div>
+    <span class="eyebrow">Get in touch</span>
+    <h1>Let's talk<br><em>fit &amp; finish.</em></h1>
+  </div>
+  <p class="hero-note">
+    For sizing questions, made-to-order pieces, press, or anything in between —
+    our studio team replies within one business day.
+  </p>
+</section>
+
+<div class="wrap">
+  <div class="tape reveal">
+    <div class="tape-inner">
+       
+       <svg viewBox="0 0 1000 64" preserveAspectRatio="none">
+        <!-- major ticks every 50 units, minor every 10 -->
+        <g stroke="#171512" stroke-width="1">
+          <!-- minor ticks -->
+          <g opacity="0.35">
+            <line x1="10" y1="44" x2="10" y2="54"></line>
+            <line x1="20" y1="44" x2="20" y2="54"></line>
+            <line x1="30" y1="44" x2="30" y2="54"></line>
+            <line x1="40" y1="44" x2="40" y2="54"></line>
+          </g>
+        </g>
+        <g id="ticks"></g>
+      </svg>
+     
+    </div>
+  </div>
+</div>
+
+<script>
+  // Generate the measuring-tape tick marks programmatically
+  (function(){
+    const svg = document.querySelector('.tape svg');
+    const ns = 'http://www.w3.org/2000/svg';
+    const width = 1000;
+    for(let x = 0; x <= width; x += 10){
+      const isMajor = x % 50 === 0;
+      const line = document.createElementNS(ns, 'line');
+      line.setAttribute('x1', x); line.setAttribute('x2', x);
+      line.setAttribute('y1', 44);
+      line.setAttribute('y2', isMajor ? 58 : 52);
+      line.setAttribute('stroke', isMajor ? '#171512' : '#C08B7A');
+      line.setAttribute('stroke-width', isMajor ? 1.2 : 1);
+      line.setAttribute('opacity', isMajor ? 0.9 : 0.55);
+      svg.appendChild(line);
+      if(isMajor && x % 100 === 0 && x !== 0){
+        const text = document.createElementNS(ns, 'text');
+        text.setAttribute('x', x);
+        text.setAttribute('y', 26);
+        text.setAttribute('font-size', '10');
+        text.setAttribute('fill', '#6E6A63');
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('font-family', 'Inter, sans-serif');
+        text.textContent = x / 10;
+        svg.appendChild(text);
+      }
+    }
+    const baseline = document.createElementNS(ns, 'line');
+    baseline.setAttribute('x1', 0); baseline.setAttribute('x2', width);
+    baseline.setAttribute('y1', 44); baseline.setAttribute('y2', 44);
+    baseline.setAttribute('stroke', '#E4E1DA');
+    svg.insertBefore(baseline, svg.firstChild);
+  })();
+</script>
+
+<section class="wrap contact">
+  <div class="info reveal">
+    <h2>Studio details</h2>
+
+    <div class="swatch">
+      <span class="tag">Visit</span>
+      <p>14 Rue des Tisserands<br>75003 Paris, France</p>
+    </div>
+
+    <div class="swatch">
+      <span class="tag">Email</span>
+      <a href="mailto:hello@forme-studio.com">hello@forme-studio.com</a>
+    </div>
+
+    <div class="swatch">
+      <span class="tag">Phone</span>
+      <a href="tel:+33142000000">+33 1 42 00 00 00</a>
+    </div>
+
+    <div class="swatch">
+      <span class="tag">Hours</span>
+      <p>Tuesday – Saturday, 11:00 – 19:00<br>By appointment for fittings</p>
+    </div>
+
+    <div class="social">
+      <a href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+          <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"></circle>
+        </svg>
+      </a>
+      <a href="#" aria-label="Pinterest">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 18c1-3 1.6-5.6 2.1-8 .3-1.4 2.4-1.8 3.2-.5.6 1 .2 2.6-.2 3.9-.6 2 .8 3.4 2.7 2.6 2.2-.9 3-3.7 2.2-6-1-2.9-4.2-4.2-7.1-3.3-3 1-4.5 4-3.6 6.7"></path>
+        </svg>
+      </a>
+      <a href="#" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"></path>
+          <path d="M14 4c.4 2.2 2 3.8 4.2 4.2"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <form action="https://formspree.io/f/xkodeepe" method="POST" class="reveal">
+    <div class="row">
+      <div class="field">
+        <label for="name">Full name</label>
+        <input id="name" name="name" type="text" placeholder="Jane Doe" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="jane@email.com" required>
+      </div>
+    </div>
+
+    <div class="field select-wrap">
+      <label for="subject">Subject</label>
+      <select id="subject" name="subject">
+        <option>Sizing &amp; made-to-measure</option>
+        <option>Order &amp; shipping</option>
+        <option>Returns &amp; exchanges</option>
+        <option>Press &amp; collaborations</option>
+        <option>Something else</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Tell us what you need..." required></textarea>
+    </div>
+
+    <button type="submit" class="submit">
+      Send message
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="12" x2="20" y2="12"></line><polyline points="14 6 20 12 14 18"></polyline></svg>
+    </button>
+    <p class="confirm" id="confirmMsg">Thank you — we'll be in touch within one business day.</p>
+  </form>
+</section>
+
+<footer class="wrap">
+  <div class="logo">FORME</div>
+  <div class="fine">&copy; 2026 FORME Studio. All rights reserved.</div>
+</footer>
+
+<script>
+  function handleSubmit(e){
+    e.preventDefault();
+    const msg = document.getElementById('confirmMsg');
+    msg.classList.add('show');
+    e.target.reset();
+    setTimeout(() => msg.classList.remove('show'), 5000);
+  }
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
