@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Armenia — Product Detail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..400;1,9..144,300..400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --ivory:#F6F2EA;
+        --sand:#EDE3D3;
+        --charcoal:#211E1B;
+        --charcoal-soft:#5C564C;
+        --bronze:#A6805A;
+        --bronze-deep:#8B6239;
+        --pomegranate:#6E2430;
+        --line: rgba(33,30,27,0.14);
+        --line-soft: rgba(33,30,27,0.08);
+        --ease: cubic-bezier(0.22,1,0.36,1);
+        --dur: 700ms;
+      }
+
+      *{box-sizing:border-box; margin:0; padding:0;}
+      html{scroll-behavior:smooth;}
+      body{
+        background:var(--ivory);
+        color:var(--charcoal);
+        font-family:'Manrope',sans-serif;
+        font-weight:300;
+        -webkit-font-smoothing:antialiased;
+        overflow-x:hidden;
+      }
+      img{display:block; max-width:100%;}
+      a{color:inherit; text-decoration:none;}
+
+      /* Header */
+      header.topbar{
+        position:fixed; top:0; left:0; right:0; z-index:100;
+        background:rgba(246,242,234,0.86);
+        backdrop-filter: blur(10px) saturate(140%);
+        border-bottom:1px solid var(--line-soft);
+      }
+      .topbar-inner{
+        display:flex; align-items:center; justify-content:space-between;
+        padding:22px 56px;
+        max-width:1320px; margin:0 auto;
+      }
+      @media (max-width:900px){ .topbar-inner{padding:18px 24px;} }
+      .logo{
+        font-family:'Fraunces',serif;
+        font-size:18px;
+        letter-spacing:0.18em;
+        text-transform:uppercase;
+      }
+      .logo span{ color:var(--bronze); }
+      .back-link{
+        font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
+        display:flex; align-items:center; gap:8px; transition:color .3s;
+      }
+      .back-link:hover{ color:var(--bronze); }
+
+      /* Product Layout */
+      .product-container {
+        max-width: 1320px;
+        margin: 120px auto 80px;
+        padding: 0 56px;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 60px;
+      }
+
+      @media (max-width: 900px) {
+        .product-container {
+          grid-template-columns: 1fr;
+          margin-top: 90px;
+          padding: 0 24px;
+          gap: 40px;
+        }
+      }
+
+      /* Gallery */
+      .product-gallery {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .main-image-frame {
+        width: 100%;
+        aspect-ratio: 4/5;
+        background: var(--sand);
+        border: 1px solid var(--line);
+        overflow: hidden;
+        position: relative;
+      }
+      .main-image-frame img {
+        width: 100%; height: 100%; object-fit: cover;
+        transition: opacity 0.4s var(--ease);
+      }
+      .thumbnails {
+        display: flex;
+        gap: 12px;
+      }
+      .thumb-item {
+        width: 80px;
+        aspect-ratio: 4/5;
+        background: var(--sand);
+        border: 1px solid var(--line);
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity 0.3s, border-color 0.3s;
+      }
+      .thumb-item.active, .thumb-item:hover {
+        opacity: 1;
+        border-color: var(--bronze);
+      }
+      .thumb-item img {
+        width: 100%; height: 100%; object-fit: cover;
+      }
+
+      /* Product Details */
+      .product-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--charcoal-soft);
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      .product-title {
+        font-family: 'Fraunces', serif;
+        font-size: clamp(32px, 3vw, 42px);
+        font-weight: 400;
+        margin-bottom: 12px;
+      }
+      .product-price {
+        font-family: 'Fraunces', serif;
+        font-size: 22px;
+        color: var(--bronze-deep);
+        margin-bottom: 24px;
+      }
+      .product-desc {
+        font-size: 14.5px;
+        line-height: 1.8;
+        color: var(--charcoal-soft);
+        margin-bottom: 32px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      /* Options */
+      .option-group {
+        margin-bottom: 24px;
+      }
+      .option-label {
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        display: block;
+      }
+      .size-selector {
+        display: flex;
+        gap: 12px;
+      }
+      .size-btn {
+        width: 44px; height: 44px;
+        border: 1px solid var(--line);
+        background: transparent;
+        font-family: inherit;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.3s var(--ease);
+      }
+      .size-btn:hover, .size-btn.active {
+        background: var(--charcoal);
+        color: var(--ivory);
+        border-color: var(--charcoal);
+      }
+
+      /* Actions */
+      .btn-add {
+        width: 100%;
+        padding: 18px;
+        background: var(--charcoal);
+        color: var(--ivory);
+        border: none;
+        font-size: 11.5px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background 0.3s var(--ease);
+        margin-top: 16px;
+      }
+      .btn-add:hover {
+        background: var(--bronze-deep);
+      }
+
+      .atelier-info {
+        margin-top: 40px;
+        padding: 20px;
+        background: rgba(237, 227, 211, 0.4);
+        border-left: 2px solid var(--bronze);
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--charcoal-soft);
+      }
+    </style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="collection.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M14 8H2M2 8L7 3M2 8L7 13" stroke="currentColor" stroke-width="1.2"/></svg>
+      Back to Archive
+    </a>
+    <div class="logo">RETRO <span>ARMENIA</span></div>
+  </div>
+</header>
+
+<main class="product-container">
+  <!-- Left: Gallery -->
+  <div class="product-gallery">
+    <div class="main-image-frame">
+      <img id="mainImage" src="fashion-carusel7.jpg" alt="Product Image">
+    </div>
+    <div class="thumbnails" id="thumbContainer">
+      <!-- Dynamic Thumbnails -->
+    </div>
+  </div>
+
+  <!-- Right: Info -->
+  <div class="product-details">
+    <span class="eyebrow" id="pNumber">No. 01</span>
+    <h1 class="product-title" id="pTitle">The Ararat Column</h1>
+    <div class="product-price" id="pPrice">֏148,000</div>
+    <p class="product-desc" id="pDesc">
+      Silk crepe, hand-stitched hem. Drawn from Armenian textile motifs and re-cut for the present season.
+    </p>
+
+    <div class="option-group">
+      <span class="option-label">Select Size</span>
+      <div class="size-selector">
+        <button class="size-btn">XS</button>
+        <button class="size-btn active">S</button>
+        <button class="size-btn">M</button>
+        <button class="size-btn">L</button>
+      </div>
+    </div>
+
+    <button class="btn-add"><a href="instagrm.com">Buy with Instagram</a></button>
+
+    <div class="atelier-info">
+      <strong>Atelier Guarantee:</strong> Each piece is individually hand-finished in Yerevan. Made to order or limited batch creation.
+    </div>
+  </div>
+</main>
+
+<script>
+  // Բոլոր ապրանքների տվյալների բազան (Database mock)
+  const products = {
+    'ararat': {
+      number: 'No. 01 — Archive',
+      title: 'The Ararat Column',
+      price: '֏148,000',
+      desc: 'Crafted from pure silk crepe with a hand-stitched hem. The silhouette is designed to mimic structural Armenian stone carvings with fluid movement.',
+      images: ['fashion-carusel7.jpg', 'fashion-carusel5.jpg', 'fashion-carusel6.jpg']
+    },
+    'sevan': {
+      number: 'No. 02 — Archive',
+      title: 'Sevan Slip',
+      price: '֏96,000',
+      desc: 'Bias-cut satin dress reflecting light like the surface of Lake Sevan. Elegant minimal design with hand-finished interior seams.',
+      images: ['fashion-carusel5.jpg', 'fashion-carusel7.jpg', 'fashion-carusel2.jpg']
+    },
+    'sculpted_wool_coat': {
+      number: 'No. 03 — Archive',
+      title: 'Sculpted Wool Coat',
+      price: '$890', // կամ '֏348,000'
+      desc: 'Elegant Corset & Trousers Ensemble crafted with refined sheer sleeves and detailed lacing for a structured yet graceful silhouette.',
+      images: ['fashion-carusel1.jpg', 'fashion-carusel2.jpg', 'fashion-carusel3.jpg']
+    },
+    'linen_poet_blouse': {
+      number: 'No. 04 — Archive',
+      title: 'Linen Poet Blouse',
+      price: '$320', // կամ '֏125,000'
+      desc: 'Vibrant flowing red gown featuring an expansive pleated skirt designed to deliver breath-taking movement with every step.',
+      images: ['fashion-carusel4.jpg', 'fashion-carusel5.jpg', 'fashion-carusel6.jpg']
+    },
+    'vintage_wrap_dress': {
+      number: 'No. 05 — Archive',
+      title: 'Vintage Wrap Dress',
+      price: '$460', // կամ '֏180,000'
+      desc: 'Chic modern casual wear featuring a ribbed crop top paired with an unbuttoned overshirt for effortless everyday elegance.',
+      images: ['fashion-carusel7.jpg', 'fashion-carusel8.jpg', 'fashion-carusel9.jpg']
+    },
+    'gyumri': {
+      number: 'No. 03 — Archive',
+      title: 'Gyumri Wrap',
+      price: '֏121,000',
+      desc: 'Heavy wool blend tailored wrap dress featuring custom hand-carved horn buttons, inspired by 19th-century Alexandropol urban couture.',
+      images: ['fashion-carusel6.jpg', 'fashion-carusel3.jpg', 'fashion-carusel4.jpg']
+    },
+    'dvin': {
+      number: 'No. 04 — Archive',
+      title: 'Dvin Midi',
+      price: '֏89,000',
+      desc: 'Natural textured linen with carved bone trim. Perfect vintage silhouette with framed waistline and off-shoulder cut.',
+      images: ['fashion-carusel2.jpg', 'fashion-carusel7.jpg', 'fashion-carusel5.jpg']
+    },
+    'lori': {
+      number: 'No. 07 — Archive',
+      title: 'Lori Evening Dress',
+      price: '֏165,000',
+      desc: 'An evening cut in one continuous piece. The pattern is drafted from a single curve borrowed from Lori carpet weaving.',
+      images: ['fashion-carusel4.jpg', 'fashion-carusel6.jpg', 'fashion-carusel2.jpg']
+    },
+    'shirak': {
+      number: 'No. 11 — Archive',
+      title: 'Shirak Day Dress',
+      price: '֏110,000',
+      desc: 'A classic shirt-dress with a dropped shoulder and hem below the knee, sewn in a washed cotton twill.',
+      images: ['fashion-carusel3.jpg', 'fashion-carusel5.jpg', 'fashion-carusel7.jpg']
+    }
+  };
+
+  // Կարդալ URL-ից id պարամետրը (օրինակ` product.html?id=ararat)
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get('id') || 'ararat'; // default ararat
+
+  const product = products[productId] || products['ararat'];
+
+  // Լրացնել տվյալները HTML-ում
+  document.getElementById('pNumber').innerText = product.number;
+  document.getElementById('pTitle').innerText = product.title;
+  document.getElementById('pPrice').innerText = product.price;
+  document.getElementById('pDesc').innerText = product.desc;
+
+  const mainImg = document.getElementById('mainImage');
+  mainImg.src = product.images[0];
+
+  const thumbContainer = document.getElementById('thumbContainer');
+  thumbContainer.innerHTML = '';
+
+  product.images.forEach((imgSrc, index) => {
+    const thumb = document.createElement('div');
+    thumb.className = `thumb-item ${index === 0 ? 'active' : ''}`;
+    thumb.innerHTML = `<img src="${imgSrc}" alt="Thumbnail">`;
+    
+    thumb.addEventListener('click', () => {
+      mainImg.src = imgSrc;
+      document.querySelectorAll('.thumb-item').forEach(el => el.classList.remove('active'));
+      thumb.classList.add('active');
+    });
+
+    thumbContainer.appendChild(thumb);
+  });
+
+  // Size Button selection logic
+  document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
