@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collection — Retro Armenia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F6F2EA;
+    --sand:#EDE3D3;
+    --charcoal:#211E1B;
+    --charcoal-soft:#5C564C;
+    --bronze:#A6805A;
+    --bronze-deep:#8B6239;
+    --pomegranate:#6E2430;
+    --line: rgba(33,30,27,0.14);
+    --line-soft: rgba(33,30,27,0.08);
+    --ease: cubic-bezier(0.22,1,0.36,1);
+    --dur: 700ms;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--charcoal);
+    font-family:'Manrope',sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+
+  ::selection{background:var(--bronze); color:var(--ivory);}
+
+  h1,h2,h3,.serif{
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Manrope',sans-serif;
+    font-size:11px;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--charcoal-soft);
+    font-weight:600;
+  }
+
+  .wrap{
+    max-width:1320px;
+    margin:0 auto;
+    padding:0 56px;
+  }
+
+  @media (max-width:900px){
+    .wrap{padding:0 24px;}
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .reveal.scale{ transform: translateY(20px) scale(0.98); }
+  .reveal.in-view{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+  .reveal.d1{transition-delay:.1s;}
+  .reveal.d2{transition-delay:.22s;}
+  .reveal.d3{transition-delay:.34s;}
+  .reveal.d4{transition-delay:.46s;}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .reveal.in-view{ opacity:1; transform:none; transition:none; }
+    *{ scroll-behavior:auto !important; }
+  }
+
+  /* ---------- top bar ---------- */
+  header.topbar{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(246,242,234,0.86);
+    backdrop-filter: blur(10px) saturate(140%);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .topbar-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 56px;
+    max-width:1320px; margin:0 auto;
+  }
+  @media (max-width:900px){ .topbar-inner{padding:18px 24px;} }
+  .logo{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+  }
+  .logo span{ color:var(--bronze); }
+  
+  .topbar-nav{
+    display:flex; gap:40px;
+    font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--charcoal-soft);
+  }
+  .topbar-nav a{ position:relative; padding-bottom:4px; transition:color .4s var(--ease); }
+  .topbar-nav a::after{
+    content:''; position:absolute; left:50%; bottom:0; width:100%; height:1px;
+    background:var(--bronze);
+    transform:translateX(-50%) scaleX(0); transform-origin:center;
+    transition:transform .5s var(--ease);
+  }
+  .topbar-nav a:hover{ color:var(--charcoal); }
+  .topbar-nav a:hover::after{ transform:translateX(-50%) scaleX(1); }
+  .topbar-nav a.active::after{ transform:translateX(-50%) scaleX(1); }
+  .topbar-nav a.active{ color:var(--charcoal); }
+
+  /* ---------- SECTION 1 — Editorial intro (16:9 format) ---------- */
+  .hero{
+    position:relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-top: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow:hidden;
+  }
+
+  .hero-bg-video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  .video-desktop { display: block; }
+  .video-mobile { display: none; }
+
+  @media (max-width: 760px) {
+    .hero { aspect-ratio: 16 / 9; }
+    .video-desktop { display: none; }
+    .video-mobile { display: block; }
+  }
+
+  /* Overlay elements with keywords */
+  .hero-overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--ivory);
+    padding: 30px 50px;
+  margin-top: 20%;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(246, 242, 234, 0.2);
+  }
+
+  .fashion-keywords {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .fashion-keywords span {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(18px, 3.5vw, 42px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ivory);
+  }
+
+  .fashion-keywords .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--bronze);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(10px, 1.2vw, 14px);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--sand);
+    opacity: 0.9;
+  }
+
+  /* ---------- SECTION 1.5 — Horizontal Depth Fade strip ---------- */
+  .depth-fade{
+    position:relative;
+    height:340vh;
+    background:var(--charcoal);
+  }
+  .depth-fade-sticky{
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    background:var(--white);
+  }
+  .depth-fade-heading{
+    position:absolute;
+    top:64px; left:0; right:0;
+    z-index:3;
+    text-align:center;
+    pointer-events:none;
+  }
+  .depth-fade-heading .eyebrow{ color:rgba(246,242,234,0.55); }
+  .depth-fade-heading h2{
+    margin-top:14px;
+    color:var(--white);
+    font-size:clamp(24px,3vw,36px);
+    font-weight:400;
+    font-style:italic;
+  }
+  .depth-fade-track{
+    display:flex;
+    align-items:center;
+    gap:1.5rem;
+    padding-left:12vw;
+    will-change:transform;
+  }
+  .depth-fade-item{
+    position:relative;
+    flex:0 0 auto;
+    width:360px;
+    height:460px;
+    overflow:hidden;
+    border-radius:2px;
+    background:var(--sand);
+  }
+  .depth-fade-item img{
+    width:100%; height:100%;
+    object-fit:cover;
+    filter:blur(0px) brightness(100%) saturate(100%);
+    transform:scale(1);
+    will-change:filter, transform;
+  }
+  .depth-fade-item .depth-fade-cap{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:18px 20px;
+    background:linear-gradient(0deg, rgba(0, 0, 0, 0.72) 0%, rgba(20,17,14,0) 100%);
+    color:var(--ivory);
+    font-family:'Fraunces',serif;
+    font-size:14px;
+    font-style:italic;
+    opacity:0;
+    transform:translateY(6px);
+    transition:opacity .5s var(--ease), transform .5s var(--ease);
+  }
+  .depth-fade-item.is-focused .depth-fade-cap{ opacity:1; transform:translateY(0); }
+
+  @media (max-width:760px){
+    .depth-fade{ height:280vh; }
+    .depth-fade-item{ width:240px; height:320px; }
+  }
+
+  /* ---------- SECTION 2 — filters ---------- */
+  .filters-section{
+    position:sticky; top:65px; z-index:40;
+    background:var(--ivory);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .filters{
+    display:flex; gap:52px;
+    padding:26px 0;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .filters::-webkit-scrollbar{ display:none; }
+  .filter-tab{
+    position:relative;
+    background:none; border:none; cursor:pointer;
+    font-family:'Manrope',sans-serif;
+    font-size:13px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--charcoal-soft);
+    padding-bottom:12px;
+    opacity:0.55;
+    white-space:nowrap;
+    transition: opacity .5s var(--ease), color .5s var(--ease);
+  }
+  .filter-tab::after{
+    content:'';
+    position:absolute; left:50%; bottom:0;
+    width:100%; height:1px;
+    background:var(--bronze);
+    transform:translateX(-50%) scaleX(0);
+    transform-origin:center;
+    transition:transform .55s var(--ease);
+  }
+  .filter-tab:hover{ opacity:0.85; }
+  .filter-tab:hover::after{ transform:translateX(-50%) scaleX(0.6); }
+  .filter-tab.active{ opacity:1; color:var(--charcoal); }
+  .filter-tab.active::after{ transform:translateX(-50%) scaleX(1); }
+
+  /* ---------- product card ---------- */
+  .piece{
+    position:relative;
+    display:flex; flex-direction:column;
+    transition: transform .8s var(--ease), opacity .5s var(--ease);
+  }
+  .piece.hide{ display:none; }
+  .piece-frame{
+    position:relative;
+    overflow:hidden;
+    background:var(--sand);
+    border-radius:2px;
+  }
+  .piece-frame img{
+    width:100%; height:100%; object-fit:cover;
+    filter:grayscale(55%) sepia(6%) contrast(1.05) brightness(1.01);
+    transform:scale(1);
+    transition: transform 1.4s var(--ease), filter 1s var(--ease);
+  }
+  .piece-frame::after{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(33,30,27,0) 60%, rgba(33,30,27,0.16) 100%);
+    opacity:0; transition:opacity .6s var(--ease);
+  }
+  .piece:hover .piece-frame img{ transform:scale(1.07); filter:grayscale(20%) sepia(4%) contrast(1.03); }
+  .piece:hover{ transform:translateY(-7px); }
+  .piece:hover .piece-frame{ box-shadow:0 34px 60px -20px rgba(33,30,27,0.28); }
+  .piece:hover .piece-frame::after{ opacity:1; }
+
+  .piece-info{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    margin-top:20px;
+    gap:14px;
+  }
+  .piece-name{
+    font-family:'Fraunces',serif;
+    font-size:17px;
+    font-weight:400;
+    color:var(--charcoal);
+    margin-bottom:6px;
+  }
+  .piece-view{
+    font-size:10.5px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--charcoal-soft);
+    opacity:0.55;
+    transform:translateY(4px);
+    transition: opacity .5s var(--ease), transform .5s var(--ease), color .5s var(--ease);
+  }
+  .piece:hover .piece-view{ opacity:1; transform:translateY(0); color:var(--bronze-deep); }
+  .piece-price{
+    font-size:14px;
+    color:var(--charcoal-soft);
+    letter-spacing:0.02em;
+    transition: color .6s var(--ease);
+    white-space:nowrap;
+  }
+  .piece:hover .piece-price{ color:var(--bronze-deep); }
+
+  /* ---------- SECTION 3 — magazine grid ---------- */
+  .showcase{ padding:150px 0 110px; }
+  .showcase-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:70px; gap:40px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:34px;
+  }
+  .showcase-head h2{ font-size:clamp(28px,3.4vw,42px); font-weight:400; }
+  .showcase-head p{
+    max-width:340px; font-size:13.5px; line-height:1.75; color:var(--charcoal-soft);
+    text-align:right;
+  }
+  @media (max-width:760px){
+    .showcase-head{flex-direction:column; align-items:flex-start; gap:18px;}
+    .showcase-head p{text-align:left;}
+  }
+
+  .grid-a{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:40px 32px;
+  }
+  .g-large .piece-frame{ aspect-ratio:4/5; }
+  .g-large{ grid-column:1/8; grid-row:1/3; }
+  .g-med1{ grid-column:8/13; grid-row:1/2; }
+  .g-med1 .piece-frame{ aspect-ratio:5/4; }
+  .g-med2{ grid-column:8/13; grid-row:2/3; }
+  .g-med2 .piece-frame{ aspect-ratio:5/4; }
+  .g-tall{ grid-column:1/5; grid-row:3/5; margin-top:8px;}
+  .g-tall .piece-frame{ aspect-ratio:3/5; }
+  .g-note{
+    grid-column:5/13; grid-row:3/5;
+    display:flex; align-items:center;
+    padding:0 30px;
+  }
+  .g-note-inner{ max-width:420px; }
+  .g-note .eyebrow{ display:block; margin-bottom:18px; }
+  .g-note p{ font-size:15px; line-height:1.85; color:var(--charcoal-soft); }
+
+  @media (max-width:980px){
+    .grid-a{ grid-template-columns:repeat(6,1fr); }
+    .g-large{ grid-column:1/7; grid-row:auto; }
+    .g-med1{ grid-column:1/4; grid-row:auto; }
+    .g-med2{ grid-column:4/7; grid-row:auto; }
+    .g-tall{ grid-column:1/7; grid-row:auto; margin-top:0; }
+    .g-note{ grid-column:1/7; grid-row:auto; padding:20px 0; }
+  }
+
+  /* ---------- SECTION 4 — campaign banner ---------- */
+  .campaign{
+    position:relative;
+    height:88vh;
+    min-height:560px;
+    display:flex; align-items:flex-end;
+    overflow:hidden;
+    margin:40px 0;
+  }
+  .campaign img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    filter:grayscale(38%) sepia(10%) contrast(1.08) brightness(0.88);
+    transform:scale(1.06);
+    transition: transform 2.4s var(--ease);
+  }
+  .campaign.in-view img{ transform:scale(1); }
+  .campaign::before{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(20,17,14,0.62) 0%, rgba(20,17,14,0.05) 46%, rgba(20,17,14,0.15) 100%);
+  }
+  .campaign-content{
+    position:relative; z-index:2;
+    width:100%;
+    padding:0 56px 72px;
+    max-width:1320px; margin:0 auto;
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:40px;
+  }
+  .campaign-content h2{
+    color:var(--ivory);
+    font-size:clamp(32px,5vw,58px);
+    font-weight:400;
+    font-style:italic;
+    max-width:10ch;
+    line-height:1.12;
+  }
+  .campaign-cta{
+    display:inline-flex; align-items:center; gap:14px;
+    color:var(--ivory);
+    font-size:12px; letter-spacing:0.16em; text-transform:uppercase;
+    padding-bottom:10px;
+    border-bottom:1px solid rgba(246,242,234,0.5);
+    transition: border-color .5s var(--ease), gap .5s var(--ease), opacity .5s ease;
+    white-space:nowrap;
+  }
+  .campaign-cta:hover{ border-color:var(--ivory); gap:20px; }
+  .campaign-cta svg{ transition:transform .5s var(--ease); }
+  .campaign-cta:hover svg{ transform:translateX(4px); }
+  @media (max-width:760px){
+    .campaign-content{ flex-direction:column; align-items:flex-start; gap:26px; padding:0 24px 50px;}
+  }
+
+  /* ---------- SECTION 5 — second composition ---------- */
+  .showcase2{ padding:120px 0 130px; }
+  .flow{
+    display:flex; flex-direction:column; gap:150px;
+  }
+  .flow-row{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    align-items:center;
+    gap:48px;
+  }
+  .flow-row.rev{ direction:rtl; }
+  .flow-row.rev > *{ direction:ltr; }
+  .flow-image{ grid-column:span 7; }
+  .flow-image .piece-frame{ aspect-ratio:16/10; }
+  .flow-text{
+    grid-column:span 5;
+    padding:0 10px;
+  }
+  .flow-text .eyebrow{ margin-bottom:20px; display:block; }
+  .flow-text h3{
+    font-size:clamp(24px,2.6vw,32px);
+    font-weight:400;
+    margin-bottom:18px;
+    max-width:11ch;
+  }
+  .flow-text p.desc{
+    font-size:14.5px; line-height:1.85; color:var(--charcoal-soft);
+    margin-bottom:26px;
+    max-width:40ch;
+  }
+  .flow-row.small .flow-image{ grid-column:span 5; }
+  .flow-row.small .flow-text{ grid-column:span 7; }
+  .flow-row.small .flow-image .piece-frame{ aspect-ratio:4/5; }
+
+  @media (max-width:900px){
+    .flow{ gap:80px; }
+    .flow-row, .flow-row.rev, .flow-row.small{
+      grid-template-columns:1fr; direction:ltr;
+    }
+    .flow-image, .flow-text, .flow-row.small .flow-image, .flow-row.small .flow-text{
+      grid-column:1/-1;
+    }
+  }
+
+  /* ---------- SECTION 6 — quote ---------- */
+  .quote-section{
+    padding:170px 0;
+    text-align:center;
+    position:relative;
+  }
+  .quote-mark{
+    width:1px; height:70px;
+    background:var(--line);
+    margin:0 auto 46px;
+  }
+  .quote-section blockquote{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(24px,3.6vw,42px);
+    line-height:1.5;
+    max-width:820px;
+    margin:0 auto;
+    color:var(--charcoal);
+  }
+  .quote-attr{
+    margin-top:34px;
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--charcoal-soft);
+  }
+
+  /* ---------- SECTION 7 — footer ---------- */
+  footer{
+    background:var(--charcoal);
+    color:var(--ivory);
+    padding:90px 0 40px;
+  }
+  .footer-top{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:60px;
+    padding-bottom:70px;
+    border-bottom:1px solid rgba(246,242,234,0.14);
+  }
+  .footer-brand .logo{ color:var(--ivory); font-size:20px; margin-bottom:18px; }
+  .footer-brand .logo span{ color:var(--bronze); }
+  .footer-brand p{
+    max-width:280px; font-size:13.5px; line-height:1.8;
+    color:rgba(246,242,234,0.6);
+  }
+  .footer-cols{ display:flex; gap:90px; flex-wrap:wrap; }
+  .footer-col h4{
+    font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+    color:rgba(246,242,234,0.5); margin-bottom:22px; font-weight:600;
+  }
+  .footer-col a{
+    display:block; font-size:13.5px; color:rgba(246,242,234,0.85);
+    margin-bottom:14px;
+    position:relative; width:fit-content;
+    transition:color .4s var(--ease);
+  }
+  .footer-col a::after{
+    content:''; position:absolute; left:0; bottom:-2px; height:1px; width:100%;
+    background:var(--bronze); transform:scaleX(0); transform-origin:left;
+    transition:transform .5s var(--ease);
+  }
+  .footer-col a:hover{ color:var(--ivory); }
+  .footer-col a:hover::after{ transform:scaleX(1); }
+
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:34px;
+    font-size:11.5px; letter-spacing:0.04em;
+    color:rgba(246,242,234,0.45);
+    flex-wrap:wrap; gap:16px;
+  }
+  .footer-glyph{ font-family:'Fraunces',serif; font-size:15px; color:var(--bronze); opacity:0.9; }
+
+  @media (max-width:760px){
+    .footer-top{ flex-direction:column; gap:40px; }
+    .footer-cols{ gap:50px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="logo">RETRO <span>ARMENIA</span></a>
+    <nav class="topbar-nav">
+      <a href="index.html">Home</a>
+      <a href="#" class="active">Collection</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- SECTION 1 — Hero Video 16:9 with Keywords -->
+<section class="hero">
+  <video class="hero-bg-video video-desktop" autoplay loop muted playsinline>
+    <source src="collection.hero.desktop.mp4" type="video/mp4">
+  </video>
+  <video class="hero-bg-video video-mobile" autoplay loop muted playsinline>
+    <source src="collection.hero.mobile.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-overlay">
+    <div class="fashion-keywords">
+      <span>Couture</span>
+      <i class="dot"></i>
+      <span>Heritage</span>
+    </div>
+    <div class="hero-subtitle">High Tailoring & Archival Aesthetics</div>
+  </div>
+</section>
+
+<!-- SECTION 1.5 — Horizontal Depth Fade (unlumen UI, vanilla JS/GSAP port) -->
+<section class="depth-fade" id="depthFade">
+  <div class="depth-fade-sticky">
+    <div class="depth-fade-heading">
+      <span class="eyebrow">From the Archive</span>
+      <h2>Frame by Frame</h2>
+    </div>
+    <div class="depth-fade-track" id="depthFadeTrack">
+      <div class="depth-fade-item" data-cap="Yerevan, 1962">
+        <img src="fashion-carusel1.jpg" alt="Archive study 1">
+        <div class="depth-fade-cap">Yerevan, 1962</div>
+      </div>
+      <div class="depth-fade-item" data-cap="Loom House, Gyumri">
+        <img src="fashion-carusel2.jpg" alt="Archive study 2">
+        <div class="depth-fade-cap">Loom House, Gyumri</div>
+      </div>
+      <div class="depth-fade-item" data-cap="Hand-cut pattern, 1958">
+        <img src="fashion-carusel3.jpg" alt="Archive study 3">
+        <div class="depth-fade-cap">Hand-cut pattern, 1958</div>
+      </div>
+      <div class="depth-fade-item" data-cap="Vernissage market study">
+        <img src="fashion-carusel4.jpg" alt="Archive study 4">
+        <div class="depth-fade-cap">Vernissage market study</div>
+      </div>
+      <div class="depth-fade-item" data-cap="Silk trial, Atelier No. 3">
+        <img src="fashion-carusel5.jpg" alt="Archive study 5">
+        <div class="depth-fade-cap">Silk trial, Atelier No. 3</div>
+      </div>
+      <div class="depth-fade-item" data-cap="Bronze clasp, cast proof">
+        <img src="fashion-carusel6.jpg" alt="Archive study 6">
+        <div class="depth-fade-cap">Bronze clasp, cast proof</div>
+      </div>
+      <div class="depth-fade-item" data-cap="Shushi, restored">
+        <img src="fashion-carusel7.jpg" alt="Archive study 7">
+        <div class="depth-fade-cap">Shushi, restored</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+>
+
+<!-- SECTION 3 — Editorial Showcase (Magazine layout) -->
+<section class="showcase">
+  <div class="wrap">
+    <div class="showcase-head reveal">
+      <h2>The Opening Study</h2>
+      <p>Silhouettes drawn from Armenian tailoring archives, softened for a contemporary form.</p>
+    </div>
+
+    <div class="grid-a">
+      <a href="catergory.dresses.html" class="piece g-large reveal scale" data-category="outerwear">
+        <div class="piece-frame"><img src="fashion.collection.hero6.jpg" alt="The Ararat Coat"></div>
+        <div class="piece-info">
+          <div>
+            <div class="piece-name">Dresses</div>
+            <div class="piece-view">View Piece</div>
+          </div>
+          
+        </div>
+      </a>
+
+      <a href="category.tops.html" class="piece g-med1 reveal scale d1" data-category="dresses">
+        <div class="piece-frame"><img src="fashion.collection.hero2.jpg" alt="Anahit Dress"></div>
+        <div class="piece-info">
+          <div>
+            <div class="piece-name">Crop Tops</div>
+            <div class="piece-view">View Piece</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="category.corset.html" class="piece g-med2 reveal scale d2" data-category="knitwear">
+        <div class="piece-frame"><img src="fashion.collection.hero5.jpg" alt="Yerevan Knit"></div>
+        <div class="piece-info">
+          <div>
+            <div class="piece-name">Corset</div>
+            <div class="piece-view">View Piece</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="category.jeans.html" class="piece g-tall reveal scale d1" data-category="skirts">
+        <div class="piece-frame"><img src="fashion.collection.hero4.jpg" alt="Sona Skirt"></div>
+        <div class="piece-info">
+          <div>
+            <div class="piece-name">Jeans / Denims</div>
+            <div class="piece-view">View Piece</div>
+          </div>
+        </div>
+      </a>
+
+      <div class="g-note reveal d3">
+        <div class="g-note-inner">
+          <span class="eyebrow">Notes from the Denim</span>
+          <p>Crafted from premium denim for an effortless fit and lasting durability. Combining heritage patterns with modern tailoring for ultimate everyday comfort.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 — Campaign Banner -->
+<section class="campaign reveal">
+  <img src="collection.secondhero.img.png" alt="The Heritage Edit campaign">
+  <div class="campaign-content">
+    <h2>The Heritage Edit</h2>
+    <a href="#" class="campaign-cta">
+      Discover the Story
+      <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" stroke-width="1"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- SECTION 5 — Second Composition -->
+<section class="showcase2">
+  <div class="wrap">
+    <div class="showcase-head reveal">
+      <h2>Continued, Not Repeated</h2>
+      <p>A second reading of the collection — quieter, closer, made for how these pieces are actually worn.</p>
+    </div>
+
+    <div class="flow">
+      <div class="flow-row reveal">
+        <div class="flow-image">
+          <a href="" class="piece" data-category="outerwear">
+            <div class="piece-frame"><img src="fashion.collection.hero8.jpg" alt="Tigranakert Trench"></div>
+          </a>
+        </div>
+        <a href="category.knitwear.html" class="flow-text">
+          <span class="eyebrow">Knitwear</span>
+          <h3>Knitwear</h3>
+          <p class="desc">Woven with intricate heritage patterns and crafted from soft Armenian wool. Designed for a relaxed fit, combining timeless texture with modern elegance.</p>
+          <div class="piece-info" style="margin-top:0;">
+            <div class="piece-view" style="opacity:1;">View Piece</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="flow-row rev small reveal">
+        <div class="flow-image">
+          <a href="" class="piece" data-category="dresses">
+            <div class="piece-frame"><img src="fashion.collection.hero3.jpg" alt="Shushi Wrap Dress"></div>
+          </a>
+        </div>
+        <a href="category.top.html" class="flow-text">
+          <span class="eyebrow">Tops/Skirt</span>
+          <h3>Tops/Skirt</h3>
+          <p class="desc">Crafted for warm, sunlit days. A perfect matching set featuring a lightweight tank crop top and tailored shorts in high-quality fabric, combining relaxed comfort with effortless chic.</p>
+          <div class="piece-info" style="margin-top:0;">
+            <div class="piece-view" style="opacity:1;">View Piece</div>
+            
+          </div>
+        </a>
+      </div>
+
+      <div class="flow-row reveal">
+        <div class="flow-image">
+          <a href="catergory.dresses.html" class="piece" data-category="accessories">
+            <div class="piece-frame"><img src="fashion.collection.hero1.jpg" alt="Pomegranate Clutch"></div>
+          </a>
+        </div>
+        <div class="flow-text">
+          <span class="eyebrow">Accessories</span>
+          <h3>Pomegranate Clutch</h3>
+          <p class="desc">Hand-lasted leather in a deep, seed-dark tone. Small enough to hold only what matters, finished with a bronze clasp cast from a single mould.</p>
+          <div class="piece-info" style="margin-top:0;">
+            <div class="piece-view" style="opacity:1;">View Piece</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6 — Editorial Quote -->
+<section class="quote-section reveal">
+  <div class="wrap">
+    <div class="quote-mark"></div>
+    <blockquote>"We do not design clothes. We restore memory to the body."</blockquote>
+    <div class="quote-attr">Retro Armenia — Design Philosophy</div>
+  </div>
+</section>
+
+<!-- SECTION 7 — Footer -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">RETRO <span>ARMENIA</span></div>
+        <p>A maison of quiet tailoring, rooted in Yerevan. Founded on the belief that elegance is something remembered, not invented.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Collection</h4>
+          <a href="#">Dresses</a>
+          <a href="#">Outerwear</a>
+          <a href="#">Knitwear</a>
+          <a href="#">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h4>Maison</h4>
+          <a href="about.html">Our Story</a>
+          <a href="contact.html">The Atelier</a>
+          <a href="#">Sustainability</a>
+        </div>
+        <div class="footer-col">
+          <h4>Client Care</h4>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">Shipping</a>
+          <a href="about.html">Returns</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Retro Armenia. All rights reserved.</span>
+      <span class="footer-glyph">Ա</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  revealEls.forEach(el=>io.observe(el));
+
+  // Filter logic
+  const tabs = document.querySelectorAll('.filter-tab');
+  const pieces = document.querySelectorAll('.piece[data-category]');
+  tabs.forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      tabs.forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      const f = tab.dataset.filter;
+      pieces.forEach(p=>{
+        const match = f === 'all' || p.dataset.category === f;
+        p.style.transition = 'opacity .45s ease, transform .45s ease';
+        if(match){
+          p.classList.remove('hide');
+          requestAnimationFrame(()=>{ p.style.opacity = '1'; p.style.transform='translateY(0)'; });
+        } else {
+          p.style.opacity = '0';
+          p.style.transform = 'translateY(10px)';
+          setTimeout(()=>{ p.classList.add('hide'); }, 450);
+        }
+      });
+    });
+  });
+
+  // ---------- Horizontal Depth Fade (vanilla JS port, no GSAP dependency) ----------
+  (function(){
+    const section = document.getElementById('depthFade');
+    const track = document.getElementById('depthFadeTrack');
+    if(!section || !track) return;
+
+    const items = Array.from(track.querySelectorAll('.depth-fade-item'));
+    const imgs = items.map(it => it.querySelector('img'));
+
+    // Config (mirrors the unlumen HorizontalDepthFade prop defaults)
+    const config = {
+      blur: 9,                 // px, max blur away from focus
+      dim: 28,                 // % min brightness at edges
+      brightnessBoost: 45,     // % extra brightness at focus
+      darknessStrength: 1.3,
+      minSaturation: 0,        // % min saturation at edges
+      saturationStrength: 1.3,
+      focusSpread: 0.30,       // normalized focus window width
+      scaleEffect: 0.08
+    };
+
+    let maxTravel = 0;
+    let reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function measure(){
+      const trackWidth = track.scrollWidth;
+      const viewportWidth = window.innerWidth;
+      maxTravel = Math.max(0, trackWidth - viewportWidth + (viewportWidth * 0.12));
+    }
+
+    function update(){
+      if(reduceMotion){ return; }
+      const rect = section.getBoundingClientRect();
+      const total = section.offsetHeight - window.innerHeight;
+      if(total <= 0) return;
+
+      // scroll progress through the pinned section, 0 -> 1
+      let progress = (-rect.top) / total;
+      progress = Math.min(1, Math.max(0, progress));
+
+      const x = -progress * maxTravel;
+      track.style.transform = `translate3d(${x}px,0,0)`;
+
+      const viewportCenter = window.innerWidth / 2;
+      const focusWindow = window.innerWidth * config.focusSpread;
+
+      items.forEach((item, i)=>{
+        const itemRect = item.getBoundingClientRect();
+        const itemCenter = itemRect.left + itemRect.width / 2;
+        const dist = Math.abs(itemCenter - viewportCenter);
+        let n = Math.min(1, dist / focusWindow); // 0 at focus, 1 at edge
+
+        const blurAmt = n * config.blur;
+        const darkFalloff = Math.pow(n, 1 / config.darknessStrength);
+        const brightness = n === 0
+          ? 100 + config.brightnessBoost
+          : (100 + config.brightnessBoost * (1 - n)) - darkFalloff * (100 - config.dim);
+        const satFalloff = Math.pow(n, 1 / config.saturationStrength);
+        const saturation = 100 - satFalloff * (100 - config.minSaturation);
+        const scale = 1 - n * config.scaleEffect;
+
+        const img = imgs[i];
+        img.style.filter = `blur(${blurAmt.toFixed(2)}px) brightness(${Math.max(config.dim, brightness).toFixed(1)}%) saturate(${Math.max(config.minSaturation, saturation).toFixed(1)}%)`;
+        img.style.transform = `scale(${scale.toFixed(3)})`;
+
+        item.classList.toggle('is-focused', n < 0.12);
+      });
+    }
+
+    let ticking = false;
+    function onScroll(){
+      if(!ticking){
+        window.requestAnimationFrame(()=>{ update(); ticking = false; });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('resize', ()=>{ measure(); update(); });
+    window.addEventListener('scroll', onScroll, { passive:true });
+
+    measure();
+    update();
+  })();
+</script>
+
+</body>
+</html>
